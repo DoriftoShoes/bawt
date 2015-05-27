@@ -1,0 +1,18 @@
+---
+  zones:
+    1:
+      name: front
+      pin: 20
+      enabled: true
+    2:
+      name: foo
+      pin: 26
+      enabled: true
+    3:
+      name: bar
+      pin: 20
+      enabled: true
+    4:
+      name: baz
+      pin: 20
+      enabled: true
