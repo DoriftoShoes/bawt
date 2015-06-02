@@ -10,7 +10,7 @@ import sys
 class Irrigation(Base):
 
     def get_zone(self, zone):
-        return self.config['zones'][zone]
+        return self.irrigation['zones'][zone]
         
     def start(self, zone):
         zone_definition = self.get_zone(zone)
@@ -24,5 +24,7 @@ class Irrigation(Base):
 
     def timed_run(self, zone, run_time):
         thread = Thread(target=self.start(zone))
+        thread.daemon = True
+        thread.start()
         time.sleep(run_time)
         self.stop(zone)
