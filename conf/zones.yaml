@@ -6,13 +6,13 @@
       enabled: true
     2:
       name: foo
-      pin: 26
+      pin: 19
       enabled: true
     3:
       name: bar
-      pin: 20
+      pin: 26
       enabled: true
     4:
       name: baz
-      pin: 20
+      pin: 21
       enabled: true
