@@ -7,7 +7,8 @@ import sys
 if __name__ == "__main__":
     zone = int(sys.argv[1])
     state = sys.argv[2]
-    run_time = int(sys.argv[3])
+    if len(sys.argv) >= 4:
+        run_time = int(sys.argv[3])
 
     irrigation = Irrigation()
 
