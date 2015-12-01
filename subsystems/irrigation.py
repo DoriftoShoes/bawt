@@ -16,7 +16,7 @@ class Irrigation(Base):
         return self.get_zone(zone)
 
     def _get_zone_pin(self, zone):
-        pin_number = self._get_zone_definition(zone)
+        pin_number = self._get_zone_definition(zone).get('pin', None)
         return Pin(pin_number)
 
     def start(self, zone):
