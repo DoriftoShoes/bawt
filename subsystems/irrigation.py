@@ -1,13 +1,13 @@
 from switchboard.pin import Pin
 from switchboard.board import Board
-from bawt.base import Base
+from bawt.bawt import Bawt
 
 from threading import Thread
 
 import time
 import sys
 
-class Irrigation(Base):
+class Irrigation(Bawt):
 
     def get_zone(self, zone):
         return self.irrigation['zones'][zone]
