@@ -9,10 +9,15 @@ import time
 import sys
 
 class Camera(Base):
+    DEFAULT_DIRECTORY = 'tmp'
+    DEFAULT_RESOLUTION = { 'x': 1024,
+                           'y': 768 }
 
     def setup(self):
+        self.picture_directory = self.camera.get('directory', DEFAULT_DIRECTORY)
+        self.resolution = self.camera.get('resolution', DEFAULT_RESOLUTION)
         self.camera = picamera.PiCamera()
-        self.camera.resolution = (1024, 768)
+        self.camera.resolution = (self.resolution['x'], self.resolution['y'])
         self._is_initialized = False
 
     def _initialize(self):
