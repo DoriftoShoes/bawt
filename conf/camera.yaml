@@ -1,5 +1,6 @@
 ---
-remote_location: s3
+remote: s3
+s3_bucket: phool-marki-pics
 directory: /home/pi/pics
 resolution:
   x: 1024

@@ -8,9 +8,16 @@ class Bawt(object):
                            'y': 768 }
     def __init__(self):
         self.board = Board()
-        self.irrigation = yaml.safe_load(open('conf/irrigation.yaml'))
-        self.camera = yaml.safe_load(open('conf/camera.yaml'))
         self.config = yaml.safe_load(open('conf/main.yaml'))
-        self.environment = yaml.safe_load(open('conf/environment.yaml'))
+
+        self.subsystems = self.config.get('subsystems', None)
+        for subsystem, config in self.subsystems.iteritems():
+            if config.get('enabled', False):
+                try:
+                    conf_file = "conf/%s.yaml" % subsystem
+                    conf = yaml.safe_load(open(conf_file))
+                    setattr(self, subsystem, conf)
+                except Exception as e:
+                    print("Could not activate %s subsystem.  Error: %s" % (subsystem, str(e)))
 
         self.aws = self.config.get('aws', None)

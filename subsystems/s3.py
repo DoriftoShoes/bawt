@@ -24,6 +24,9 @@ class S3(Bawt):
             print str(e)
         return conn
 
+    def _get_destination(self, destination):
+        return self.camera['destinations'].get(destination, None)
+
     def _create_or_set_bucket(self, bucket):
         conn = self.connect()
         try:

@@ -2,3 +2,11 @@
 aws:
   access_key: 
   secret_key: 
+
+subsystems:
+  irrigation:
+    enabled: true
+  camera:
+    enabled: true
+  environment:
+    enabled: true
