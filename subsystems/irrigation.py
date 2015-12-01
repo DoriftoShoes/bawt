@@ -1,13 +1,13 @@
 from switchboard.pin import Pin
 from switchboard.board import Board
-from bawt.base import Base
+from bawt.bawt import Bawt
 
 from threading import Thread
 
 import time
 import sys
 
-class Irrigation(Base):
+class Irrigation(Bawt):
 
     def get_zone(self, zone):
         return self.irrigation['zones'][zone]
@@ -16,7 +16,7 @@ class Irrigation(Base):
         return self.get_zone(zone)
 
     def _get_zone_pin(self, zone):
-        pin_number = self._get_zone_definition(zone)
+        pin_number = self._get_zone_definition(zone).get('pin', None)
         return Pin(pin_number)
 
     def start(self, zone):

@@ -1,0 +1,6 @@
+---
+remote_location: s3
+directory: /home/pi/pics
+resolution:
+  x: 1024
+  y: 768

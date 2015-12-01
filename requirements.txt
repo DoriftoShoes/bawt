@@ -1,0 +1,4 @@
+pyaml
+rpi.gpio
+picamera
+boto
