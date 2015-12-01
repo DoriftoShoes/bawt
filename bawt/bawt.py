@@ -11,5 +11,6 @@ class Bawt(object):
         self.irrigation = yaml.safe_load(open('conf/irrigation.yaml'))
         self.camera = yaml.safe_load(open('conf/camera.yaml'))
         self.config = yaml.safe_load(open('conf/main.yaml'))
+        self.environment = yaml.safe_load(open('conf/environment.yaml'))
 
         self.aws = self.config.get('aws', None)
