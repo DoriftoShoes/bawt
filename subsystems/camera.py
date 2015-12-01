@@ -11,6 +11,7 @@ import sys
 class Camera(Bawt):
 
     def setup(self):
+        self.fname = None
         self.picture_directory = self.camera.get('directory', Bawt.DEFAULT_DIRECTORY)
         self.resolution = self.camera.get('resolution', Bawt.DEFAULT_RESOLUTION)
         self.camera = picamera.PiCamera()
@@ -24,18 +25,17 @@ class Camera(Bawt):
             self._is_initialized = True
 
     def _get_filepath(self, name=None, use_timestamp=True):
-        current_time = time.time()
-        fname = None
+        current_time = time.time() * 1000
         if name:
-            fname = "%s_" % name
+            self.fname = "%s_" % name
         if use_timestamp:
-            fname = "%s%d" % (fname, current_time)
-        if len(fname) > 0:
-            return "%s/%s.jpg" % (self.picture_directory, fname)
+            self.fname = "%s%d" % (self.fname, current_time)
+        if len(self.fname) > 0:
+            self.fname =  "%s/%s.jpg" % (self.picture_directory, self.fname)
         else:
             raise Exception("Name or timestamp is required")
 
     def get_picture(self, name=None,use_timestamp=True):
-        fname = self._get_filepath(name,use_timestamp)
+        self._get_filepath(name,use_timestamp)
         self._initialize()
-        self.camera.capture(fname)
+        self.camera.capture(self.fname)
