@@ -20,4 +20,9 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: Apache Software License",
     ],
+    entry_points={
+        'console_scripts': [
+            'bawtd = bawt.bin.daemon:main'
+        ]
+    }
 )
