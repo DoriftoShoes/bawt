@@ -1,9 +1,9 @@
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
-
 from bawt.bawt import Bawt
-
 from StringIO import StringIO
+from filechunkio import FileChunkIO
+import math
 import os
 
 class S3(Bawt):
@@ -24,6 +24,9 @@ class S3(Bawt):
             print str(e)
         return conn
 
+    def _get_destination(self, destination):
+        return self.camera['destinations'].get(destination, None)
+
     def _create_or_set_bucket(self, bucket):
         conn = self.connect()
         try:
@@ -37,12 +40,24 @@ class S3(Bawt):
         b = self._create_or_set_bucket(bucket)
         k = Key(b)
         k.key = key_name
-        return k
+        return k,b
 
     def save_file(self, bucket, file_path):
+        file_size = os.stat(file_path).st_size
         file_dir, file_name = os.path.split(file_path)
-        k = self._create_key(file_name, bucket)
-        k.set_contents_from_file(StringIO(file_path))
+        file_string = StringIO(file_path)
+
+        k,b = self._create_key(file_name, bucket)
+        mp = b.initiate_multipart_upload(file_name)
+        chunk_size = 52428800
+        chunk_count = int(math.ceil(file_size / float(chunk_size)))
+        for i in range(chunk_count):
+            offset = chunk_size * i
+            bytes = min(chunk_size, file_size - offset)
+            with FileChunkIO(file_path, 'r', offset=offset, bytes=bytes) as fp:
+                mp.upload_part_from_file(fp, part_num=i + 1)
+        mp.complete_upload()
+        #k.set_contents_from_file(StringIO(file_path))
 
     def save_string(self, bucket, name, content):
         k = self._create_key(name, bucket)

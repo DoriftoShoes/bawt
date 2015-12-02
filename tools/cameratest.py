@@ -1,7 +1,7 @@
-from switchboard.pin import Pin
-from switchboard.board import Board
-from subsystems.camera import Camera
-from subsystems.file import File
+from bawt.switchboard.pin import Pin
+from bawt.switchboard.board import Board
+from bawt.subsystems.camera import Camera
+from bawt.subsystems.file import File
 
 import sys
 
@@ -10,7 +10,9 @@ if __name__ == "__main__":
 
     cam = Camera()
     cam.setup()
-    cam.get_picture(name="foo", use_timestamp=True)
-    
-    f = File()
-    f.copy(cam.fname)
+    cam.get_picture(name=pic_type, use_timestamp=True)
+ 
+    cam.remote_save(cam.fname)
+    cam.get_picture(name=pic_type, use_timestamp=False)
+
+    cam.remote_save(cam.fname)
