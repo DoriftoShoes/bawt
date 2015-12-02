@@ -1,5 +1,5 @@
-from switchboard.pin import Pin
-from switchboard.board import Board
+from bawt.switchboard.pin import Pin
+from bawt.switchboard.board import Board
 from bawt.bawt import Bawt
 
 from threading import Thread

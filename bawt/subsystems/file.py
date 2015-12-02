@@ -1,5 +1,5 @@
 from bawt.bawt import Bawt
-from subsystems.s3 import S3
+from bawt.subsystems.s3 import S3
 
 class File(Bawt):
 

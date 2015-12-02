@@ -1,7 +1,7 @@
-from switchboard.pin import Pin
-from switchboard.board import Board
-from subsystems.camera import Camera
-from subsystems.file import File
+from bawt.switchboard.pin import Pin
+from bawt.switchboard.board import Board
+from bawt.subsystems.camera import Camera
+from bawt.subsystems.file import File
 
 import sys
 
