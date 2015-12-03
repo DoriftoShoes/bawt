@@ -10,6 +10,7 @@ class S3(Bawt):
 
     def __init__(self):
         super(self.__class__, self).__init__()
+        self.log = self.get_logger(__name__)
         self._aws_access_key = self.aws.get('access_key', None)
         self._aws_secret_key = self.aws.get('secret_key', None)
 
@@ -20,6 +21,8 @@ class S3(Bawt):
 
         try:
             conn = S3Connection(self._aws_access_key, self._aws_secret_key)
+            self.log.info("Successfully connected to S3")
+
         except Exception as e:
             print str(e)
         return conn
@@ -57,7 +60,6 @@ class S3(Bawt):
             with FileChunkIO(file_path, 'r', offset=offset, bytes=bytes) as fp:
                 mp.upload_part_from_file(fp, part_num=i + 1)
         mp.complete_upload()
-        #k.set_contents_from_file(StringIO(file_path))
 
     def save_string(self, bucket, name, content):
         k = self._create_key(name, bucket)

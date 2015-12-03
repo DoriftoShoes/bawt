@@ -12,7 +12,4 @@ if __name__ == "__main__":
     cam.setup()
     cam.get_picture(name=pic_type, use_timestamp=True)
  
-    cam.remote_save(cam.fname)
-    cam.get_picture(name=pic_type, use_timestamp=False)
-
-    cam.remote_save(cam.fname)
+    cam.remote_save(delete_local=True)

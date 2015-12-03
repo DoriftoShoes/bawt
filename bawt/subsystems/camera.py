@@ -13,7 +13,7 @@ class Camera(Bawt):
 
     def setup(self):
         self.fname = None
-        self.bucket = self.camera.get('s3_bucket', None)
+        self.remote = self.camera.get('remote', None)
         self.picture_directory = self.camera.get('directory', Bawt.DEFAULT_DIRECTORY)
         self.resolution = self.camera.get('resolution', Bawt.DEFAULT_RESOLUTION)
         self.camera = picamera.PiCamera()
@@ -25,6 +25,7 @@ class Camera(Bawt):
             self.camera.start_preview()
             time.sleep(2)
             self._is_initialized = True
+        self.logger = self.get_logger(__name__)
 
     def _get_filepath(self, name=None, use_timestamp=True):
         current_time = str(int(time.time()))
@@ -43,6 +44,12 @@ class Camera(Bawt):
         self._initialize()
         self.camera.capture(self.fname)
 
-    def remote_save(self, filepath):
+    def remote_save(self, file_path=None, delete_local=False):
+        if not file_path:
+            file_path = self.fname
+
         file = File()
-        file.copy(filepath, self.bucket)
+        remote_target = self.remote.get('target', None)
+        file.copy(file_path, remote_target)
+        if delete_local:
+            file.delete(file_path)
