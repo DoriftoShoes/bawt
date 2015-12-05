@@ -9,6 +9,10 @@ import sys
 
 class Irrigation(Bawt):
 
+    def __init__(self):
+        super(self.__class__, self).__init__()
+        self.logger = self.get_logger(__name__)
+
     def get_zone(self, zone):
         return self.irrigation['zones'][zone]
 

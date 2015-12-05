@@ -10,7 +10,7 @@ class S3(Bawt):
 
     def __init__(self):
         super(self.__class__, self).__init__()
-        self.log = self.get_logger(__name__)
+        self.logger = self.get_logger(__name__)
         self._aws_access_key = self.aws.get('access_key', None)
         self._aws_secret_key = self.aws.get('secret_key', None)
 
@@ -21,7 +21,7 @@ class S3(Bawt):
 
         try:
             conn = S3Connection(self._aws_access_key, self._aws_secret_key)
-            self.log.info("Successfully connected to S3")
+            self.logger.info("Successfully connected to S3")
 
         except Exception as e:
             print str(e)
@@ -35,6 +35,7 @@ class S3(Bawt):
         try:
             b = conn.create_bucket(bucket)
             self._bucket = bucket_name
+            self.logger.info("Created s3 bucket: %s" % bucket)
         except:
             b = conn.get_bucket(bucket)
         return b
@@ -51,6 +52,7 @@ class S3(Bawt):
         file_string = StringIO(file_path)
 
         k,b = self._create_key(file_name, bucket)
+        self.logger.info("Starting S3 file upload. %s to %s" % (file_path, bucket))
         mp = b.initiate_multipart_upload(file_name)
         chunk_size = 52428800
         chunk_count = int(math.ceil(file_size / float(chunk_size)))
@@ -60,8 +62,11 @@ class S3(Bawt):
             with FileChunkIO(file_path, 'r', offset=offset, bytes=bytes) as fp:
                 mp.upload_part_from_file(fp, part_num=i + 1)
         mp.complete_upload()
+        self.logger.info("Completed S3 file upload. %s to %s" % (file_path, bucket))
 
     def save_string(self, bucket, name, content):
+        self.logger.info("Starting S3 string upload. %s to %s" % (name, bucket))
         k = self._create_key(name, bucket)
         k.set_contents_from_string(contents)
+        self.logger.info("Completed S3 string upload. %s to %s" % (name, bucket))
 

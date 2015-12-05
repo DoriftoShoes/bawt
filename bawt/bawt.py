@@ -1,4 +1,6 @@
 from switchboard.board import Board
+import logging
+from logging.config import fileConfig
 import yaml
 
 class Bawt(object):
@@ -6,9 +8,11 @@ class Bawt(object):
     DEFAULT_DIRECTORY = 'tmp'
     DEFAULT_RESOLUTION = { 'x': 1024,
                            'y': 768 }
-    def __init__(self):
+    def __init__(self, config_file='/home/pi/bawt/conf/main.yaml'):
         self.board = Board()
-        self.config = yaml.safe_load(open('conf/main.yaml'))
+        self.config = yaml.safe_load(open(config_file))
+        self.logging_config = self.config.get('logging', None).get('config_file', None)
+        self.log = self.get_logger(__name__)
 
         self.subsystems = self.config.get('subsystems', None)
         for subsystem, config in self.subsystems.iteritems():
@@ -21,7 +25,14 @@ class Bawt(object):
                         conf_file_path = "conf/%s.yaml" % subsystem
                     conf = yaml.safe_load(open(conf_file_path))
                     setattr(self, subsystem, conf)
+                    self.log.info("Intializing subsystem: %s" % subsystem)
                 except Exception as e:
-                    print("Could not activate %s subsystem.  Error: %s" % (subsystem, str(e)))
+                    self.log.info("Could not activate %s subsystem.  Error: %s" % (subsystem, str(e)))
 
         self.aws = self.config.get('aws', None)
+
+    def get_logger(self, name):
+        fileConfig(self.logging_config)
+        self.log = logging.getLogger(name)
+        self.log.debug("Logger initialized.")
+        return self.log

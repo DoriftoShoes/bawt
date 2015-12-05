@@ -1,29 +1,15 @@
 ---
 aws:
-#  access_key:
-#  secret_key:
-  access_key: AKIAI7S4M2SZA6GUUD4A
-  secret_key: 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
+  access_key:
+  secret_key:
 
 subsystems:
   irrigation:
-    enabled: true
+    enabled: false
   camera:
     enabled: true
   environment:
-    enabled: true
+    enabled: false
 
 logging:
-  version: 1
-  formatters:
-    f:
-      format: '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-  handlers:
-    h:
-      class: logging.StreamHandler
-      formatter: f
-      level: DEBUG
-  loggers:
-    root:
-      handlers: h
-      level: DEBUG
+    config_file: conf/logging.conf
