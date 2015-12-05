@@ -24,7 +24,7 @@ class S3(Bawt):
             self.logger.info("Successfully connected to S3")
 
         except Exception as e:
-            print str(e)
+            self.logger.critical(str(e))
         return conn
 
     def _get_destination(self, destination):
