@@ -14,10 +14,12 @@ class Bawtd(Bawt):
         self.parser.add_argument('--subsystem', dest='subsystem', default=None, help='Subsystem to run')
         self.parser.add_argument('--config-file', dest='config_file', default='conf/main.yaml', help='path to the config file')
         self.args = self.parser.parse_args(args=argv)
+        self.logger = self.get_logger(__name__)
         
     def run(self):
         while True:
-            print('running')           
+            self.logger.info('running...')
+            time.sleep(2)
             
 
 def main(argv=sys.argv[1:]):

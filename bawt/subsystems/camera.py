@@ -25,7 +25,7 @@ class Camera(Bawt):
             self.camera.start_preview()
             time.sleep(2)
             self._is_initialized = True
-        self.logger = self.get_logger(__name__)
+            self.logger = self.get_logger(__name__)
 
     def _get_filepath(self, name=None, use_timestamp=True):
         current_time = str(int(time.time()))
@@ -42,14 +42,16 @@ class Camera(Bawt):
     def get_picture(self, name=None,use_timestamp=True):
         self._get_filepath(name,use_timestamp)
         self._initialize()
+        self.logger.info("Taking picture: %s" % self.fname)
         self.camera.capture(self.fname)
 
-    def remote_save(self, file_path=None, delete_local=False):
+    def remote_save(self, file_path=None, delete_local=False, remote_target=None):
         if not file_path:
             file_path = self.fname
 
         file = File()
-        remote_target = self.remote.get('target', None)
-        file.copy(file_path, remote_target)
-        if delete_local:
-            file.delete(file_path)
+        if not remote_target:
+            remote_target = self.remote.get('target', None)
+        self.logger.info("Saving picture %s to %s" % (file_path, remote_target))
+        file.copy(file_path, remote_target, delete=delete_local)
+

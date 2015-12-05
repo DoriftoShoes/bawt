@@ -14,7 +14,7 @@ class Pin():
 
     def on(self):
         if self.mode != GPIO.OUT:
-            print "Can only turn on output pins"
+            raise Exception("Can only turn on output pins")
             return False
         else:
             GPIO.output(self.pin, True)
@@ -23,7 +23,7 @@ class Pin():
 
     def off(self):
         if self.mode != GPIO.OUT:
-            print "Can only turn off output pins"
+            raise Exeption("Can only turn off output pins)
             return False
         else:
             GPIO.output(self.pin, False)

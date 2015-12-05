@@ -1,6 +1,6 @@
 ---
 remote: 
-  type: s3
+  type: S3
   target: phool-marki-pics
 directory: /home/pi/pics
 resolution:
