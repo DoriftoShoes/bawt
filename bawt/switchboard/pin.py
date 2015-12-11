@@ -1,7 +1,7 @@
 try:
     import RPi.GPIO as GPIO
 except:
-    import bawt.mock.RPi.GPIO as GPIO
+    from bawt.mock.RPi import GPIO
 
 
 class Pin:

@@ -1,8 +1,8 @@
 try:
     import RPi.GPIO as GPIO
-except:
-    import bawt.mock.RPi.GPIO as GPIO
-    print(bawt.mock.RPi.GPIO.ANNOUNCEMENT)
+except ImportError:
+    from bawt.mock.RPi import GPIO
+    print(GPIO.ANNOUNCEMENT)
 
 
 class Board:

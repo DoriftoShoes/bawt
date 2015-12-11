@@ -1,5 +1,5 @@
 
-class GPIO:
+class GPIO(object):
 
     BCM = "BCM"
     OUT = "OUT"
