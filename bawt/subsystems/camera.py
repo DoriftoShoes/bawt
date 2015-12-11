@@ -2,7 +2,8 @@ import time
 
 try:
     import picamera
-except ImportError:
+    picamera.PiCamera()
+except:
     import bawt.mock.picamera as picamera
 
 from bawt.bawt import Bawt
@@ -70,7 +71,7 @@ class Camera(Bawt):
         self._get_filepath(name, use_timestamp)
         self._initialize()
         self.logger.info("Taking picture: %s" % self.fname)
-        self.camera.capture(self.fname)
+        self.cam.capture(self.fname)
 
     def remote_save(self, file_path=None, delete_local=False, remote_target=None):
         """

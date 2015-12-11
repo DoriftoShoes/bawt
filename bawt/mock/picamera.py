@@ -1,6 +1,6 @@
+import os
 
-
-class Picamera(object):
+class PiCamera(object):
 
     def __init__(self):
         super(self.__class__, self).__init__()
@@ -47,7 +47,9 @@ class Picamera(object):
     def capture(
             self, output, format=None, use_video_port=False, resize=None,
             splitter_port=0, **options):
-        pass
+
+        with open(output, 'a') as f:
+            f.write(output)
 
     def capture_sequence(
             self, outputs, format='jpeg', use_video_port=False, resize=None,
