@@ -1,5 +1,7 @@
-import RPi.GPIO as GPIO
-
+try:
+    import RPi.GPIO as GPIO
+except:
+    import bawt.mock.RPi.GPIO as GPIO
 
 class Board:
 
