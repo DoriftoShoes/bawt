@@ -3,6 +3,14 @@ class GPIO:
 
     BCM = "BCM"
     OUT = "OUT"
+    ANNOUNCEMENT = '''
+    ############################################################
+    #                                                          #
+    #              WARNING: RPi.GPIO unavailable.              #
+    #         bawt.mock.RPi.GPIO will be used instead          #
+    #                                                          #
+    ############################################################
+    '''
 
     def __init__(self):
         pass
