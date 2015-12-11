@@ -1,7 +1,8 @@
+import os
+
 from bawt.bawt import Bawt
 from bawt.subsystems.s3 import S3
 
-import os
 
 class File(Bawt):
 
@@ -13,7 +14,15 @@ class File(Bawt):
        
     def copy(self, file_path, destination, delete=False):
 
+        """
+        Copy to remote system.
+        :param file_path: Local file path
+        :param destination: Location on remote system
+        :param delete: Whether to delete local copy
+        :return:
+        """
         self.logger.info("Remote type is set to %s" % self.remote_type)
+        remote_save = None
         if self.remote_type == 'S3':
             remote_save = S3()
 
@@ -27,5 +36,9 @@ class File(Bawt):
             self.delete(file_path)
 
     def delete(self, file_path):
+        """
+        Delete local file
+        :param file_path: Local file path for deletion
+        """
         os.remove(file_path)
         self.logger.info("Deleted local file: %s" % file_path)
