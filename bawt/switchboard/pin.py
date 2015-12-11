@@ -1,4 +1,7 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    from bawt.mock.RPi import GPIO
 
 
 class Pin:

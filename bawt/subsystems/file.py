@@ -40,5 +40,8 @@ class File(Bawt):
         Delete local file
         :param file_path: Local file path for deletion
         """
-        os.remove(file_path)
-        self.logger.info("Deleted local file: %s" % file_path)
+        try:
+            os.remove(file_path)
+            self.logger.info("Deleted local file: %s" % file_path)
+        except:
+            self.logger.info("Failed to delete file: %s" % file_path)
