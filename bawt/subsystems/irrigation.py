@@ -1,11 +1,9 @@
-from bawt.switchboard.pin import Pin
-from bawt.switchboard.board import Board
-from bawt.bawt import Bawt
-
+import time
 from threading import Thread
 
-import time
-import sys
+from bawt.bawt import Bawt
+from bawt.switchboard.pin import Pin
+
 
 class Irrigation(Bawt):
 
@@ -26,7 +24,7 @@ class Irrigation(Bawt):
     def start(self, zone):
         pin = self._get_zone_pin(zone)
         pin.on()
-        
+
     def stop(self, zone):
         pin = self._get_zone_pin(zone)
         pin.off()

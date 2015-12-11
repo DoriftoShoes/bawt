@@ -1,10 +1,12 @@
-from boto.s3.connection import S3Connection
-from boto.s3.key import Key
-from bawt.bawt import Bawt
-from StringIO import StringIO
-from filechunkio import FileChunkIO
 import math
 import os
+
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+from filechunkio import FileChunkIO
+
+from bawt.bawt import Bawt
+
 
 class S3(Bawt):
 
@@ -34,7 +36,7 @@ class S3(Bawt):
         conn = self.connect()
         try:
             b = conn.create_bucket(bucket)
-            self._bucket = bucket_name
+            self._bucket = bucket
             self.logger.info("Created s3 bucket: %s" % bucket)
         except:
             b = conn.get_bucket(bucket)
@@ -44,29 +46,33 @@ class S3(Bawt):
         b = self._create_or_set_bucket(bucket)
         k = Key(b)
         k.key = key_name
-        return k,b
+        return k, b
 
     def save_file(self, bucket, file_path):
         file_size = os.stat(file_path).st_size
         file_dir, file_name = os.path.split(file_path)
-        file_string = StringIO(file_path)
 
-        k,b = self._create_key(file_name, bucket)
+        k, b = self._create_key(file_name, bucket)
         self.logger.info("Starting S3 file upload. %s to %s" % (file_path, bucket))
         mp = b.initiate_multipart_upload(file_name)
         chunk_size = 52428800
         chunk_count = int(math.ceil(file_size / float(chunk_size)))
         for i in range(chunk_count):
             offset = chunk_size * i
-            bytes = min(chunk_size, file_size - offset)
-            with FileChunkIO(file_path, 'r', offset=offset, bytes=bytes) as fp:
+            _bytes = min(chunk_size, file_size - offset)
+            with FileChunkIO(file_path, 'r', offset=offset, bytes=_bytes) as fp:
                 mp.upload_part_from_file(fp, part_num=i + 1)
         mp.complete_upload()
         self.logger.info("Completed S3 file upload. %s to %s" % (file_path, bucket))
 
     def save_string(self, bucket, name, content):
+        """
+        Save string to S3 bucket
+        :param bucket: bucket name
+        :param name: remote name for object
+        :param content: Contents to save to remote object
+        """
         self.logger.info("Starting S3 string upload. %s to %s" % (name, bucket))
-        k = self._create_key(name, bucket)
-        k.set_contents_from_string(contents)
+        k, b = self._create_key(name, bucket)
+        k.set_contents_from_string(content)
         self.logger.info("Completed S3 string upload. %s to %s" % (name, bucket))
-
