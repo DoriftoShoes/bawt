@@ -44,6 +44,6 @@ class Bawt(object):
         :return: Logger
         """
         fileConfig(self.logging_config)
-        self.log = logging.getLogger(name)
-        self.log.debug("Logger initialized.")
-        return self.log
+        log = logging.getLogger(name)
+        log.debug("Logger initialized.")
+        return log
