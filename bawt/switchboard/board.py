@@ -1,11 +1,16 @@
-#try:
-#    import RPi.GPIO as GPIO
-#    bcm = GPIO.BCM
-#except:
-#    from bawt.mock.RPi import GPIO
-#    print(GPIO.ANNOUNCEMENT)
+import os
 
-from bawt.mock.RPi import GPIO
+ci = os.environ.get('CI', False)
+
+if not ci:
+    try:
+        import RPi.GPIO as GPIO
+        bcm = GPIO.BCM
+    except:
+        from bawt.mock.RPi import GPIO
+        print(GPIO.ANNOUNCEMENT)
+else:
+    from bawt.mock.RPi import GPIO
 
 class Board:
 
