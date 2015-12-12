@@ -7,6 +7,7 @@ except:
     import bawt.mock.picamera as picamera
 
 from bawt.bawt import Bawt
+import bawt.log as logging
 from bawt.subsystems.file import File
 
 
@@ -41,7 +42,7 @@ class Camera(Bawt):
             self.cam.start_preview()
             time.sleep(2)
             self._is_initialized = True
-            self.logger = self.get_logger(__name__)
+            self.logger = logging.get_logger(__name__, self.logging_config)
 
     def _get_filepath(self, name=None, use_timestamp=True):
         """

@@ -1,6 +1,7 @@
 import os
 
 from bawt.bawt import Bawt
+from bawt import log as logging
 from bawt.subsystems.s3 import S3
 
 
@@ -10,7 +11,7 @@ class File(Bawt):
         super(self.__class__, self).__init__()
         self.remote = self.camera.get('remote', None)
         self.remote_type = self.remote.get('type', None)
-        self.logger = self.get_logger(__name__)
+        self.logger = logging.get_logger(__name__, self.logging_config)
        
     def copy(self, file_path, destination, delete=False):
 

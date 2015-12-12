@@ -6,13 +6,13 @@ from boto.s3.key import Key
 from filechunkio import FileChunkIO
 
 from bawt.bawt import Bawt
-
+from bawt import log as logging
 
 class S3(Bawt):
 
     def __init__(self):
         super(self.__class__, self).__init__()
-        self.logger = self.get_logger(__name__)
+        self.logger = logging.get_logger(__name__, self.logging_config)
         self._aws_access_key = self.aws.get('access_key', None)
         self._aws_secret_key = self.aws.get('secret_key', None)
 
