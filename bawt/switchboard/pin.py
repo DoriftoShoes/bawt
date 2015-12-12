@@ -5,7 +5,6 @@ ci = os.environ.get('CI', False)
 if not ci:
     try:
         import RPi.GPIO as GPIO
-        bcm = GPIO.BCM
     except:
         from bawt.mock.RPi import GPIO
         print(GPIO.ANNOUNCEMENT)
