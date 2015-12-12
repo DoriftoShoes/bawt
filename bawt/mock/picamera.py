@@ -2,6 +2,15 @@ import os
 
 class PiCamera(object):
 
+    ANNOUNCEMENT = '''
+    ############################################################
+    #                                                          #
+    #              WARNING: picamera unavailable.              #
+    #         bawt.mock.picamera will be used instead          #
+    #                                                          #
+    ############################################################
+    '''
+
     def __init__(self):
         super(self.__class__, self).__init__()
         self.resolution = ()
