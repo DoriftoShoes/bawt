@@ -3,7 +3,7 @@ import unittest
 try:
     import RPi.GPIO as GPIO
     print GPIO.BCM
-except ImportError:
+except:
     from bawt.mock.RPi import GPIO
     print(GPIO.ANNOUNCEMENT)
 
