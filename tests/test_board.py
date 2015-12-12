@@ -9,7 +9,7 @@ class TestBoard(unittest.TestCase):
 
     BOARD = Board()
 
-    def test_board_set_mode(self, mock_mode):
+    def test_board_set_mode(self):
         TestBoard.BOARD.set_mode(GPIO.BCM)
         self.assertEquals(TestBoard.BOARD.mode,GPIO.BCM, 'Board mode not set correctly')
 

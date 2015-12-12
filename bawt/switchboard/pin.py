@@ -1,9 +1,9 @@
-try:
-    import RPi.GPIO as GPIO
-    bcm = GPIO.BCM
-except:
-    from bawt.mock.RPi import GPIO
-
+#try:
+#    import RPi.GPIO as GPIO
+#    bcm = GPIO.BCM
+#except:
+#    from bawt.mock.RPi import GPIO
+from bawt.mock.RPi import GPIO
 
 class Pin:
 
