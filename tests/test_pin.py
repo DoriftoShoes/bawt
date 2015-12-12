@@ -28,4 +28,5 @@ class TestPin(unittest.TestCase):
         self.assertEqual(TestPin.PIN.state, 'off', 'Pin was not in state "off"')
 
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestPin)
+    unittest.TextTestRunner(verbosity=2).run(suite)

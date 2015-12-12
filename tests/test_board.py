@@ -14,4 +14,5 @@ class TestBoard(unittest.TestCase):
         self.assertEquals(TestBoard.BOARD.mode,GPIO.BCM, 'Board mode not set correctly')
 
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestBoard)
+    unittest.TextTestRunner(verbosity=2).run(suite)
