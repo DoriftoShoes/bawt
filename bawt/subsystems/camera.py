@@ -5,6 +5,7 @@ try:
     picamera.PiCamera()
 except:
     import bawt.mock.picamera as picamera
+    print picamera.PiCamera.ANNOUNCEMENT
 
 from bawt.bawt import Bawt
 import bawt.log as logging
@@ -30,8 +31,6 @@ class Camera(Bawt):
         self.remote = self.camera.get('remote', None)
         self.picture_directory = self.camera.get('directory', Bawt.DEFAULT_DIRECTORY)
         self.resolution = self.camera.get('resolution', Bawt.DEFAULT_RESOLUTION)
-        self.cam = picamera.PiCamera()
-        self.cam.resolution = (self.resolution['x'], self.resolution['y'])
         self._is_initialized = False
 
     def _initialize(self):
@@ -39,6 +38,8 @@ class Camera(Bawt):
         Initialize the camera if it is not yet initialized.
         """
         if not self._is_initialized:
+            self.cam = picamera.PiCamera()
+            self.cam.resolution = (self.resolution['x'], self.resolution['y'])
             self.cam.start_preview()
             time.sleep(2)
             self._is_initialized = True
@@ -73,6 +74,7 @@ class Camera(Bawt):
         self._initialize()
         self.logger.info("Taking picture: %s" % self.fname)
         self.cam.capture(self.fname)
+        self.close()
 
     def remote_save(self, file_path=None, delete_local=False, remote_target=None):
         """
@@ -89,3 +91,7 @@ class Camera(Bawt):
             remote_target = self.remote.get('target', None)
         self.logger.info("Saving picture %s to %s" % (file_path, remote_target))
         f.copy(file_path, remote_target, delete=delete_local)
+
+    def close():
+        self.cam.close()
+        self._is_initialized = False
