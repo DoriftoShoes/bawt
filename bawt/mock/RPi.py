@@ -1,8 +1,9 @@
 
 class GPIO(object):
 
-    BCM = "BCM"
-    OUT = "OUT"
+    BCM = 1
+    OUT = 1
+    IN = 1
     ANNOUNCEMENT = '''
     ############################################################
     #                                                          #
