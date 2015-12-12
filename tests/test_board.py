@@ -1,6 +1,11 @@
 import unittest
 
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    from bawt.mock.RPi import GPIO
+    print(GPIO.ANNOUNCEMENT)
+
 from bawt.switchboard.board import Board
 from bawt.switchboard.pin import Pin
 
