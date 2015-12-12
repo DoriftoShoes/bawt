@@ -1,4 +1,3 @@
-import mock
 import unittest
 
 from bawt.mock.RPi import GPIO
@@ -6,7 +5,6 @@ from bawt.mock.RPi import GPIO
 from bawt.switchboard.board import Board
 from bawt.switchboard.pin import Pin
 
-@mock.patch("RPi.GPIO.setmode", autospec=True)
 class TestBoard(unittest.TestCase):
 
     BOARD = Board()
