@@ -1,6 +1,7 @@
 try:
     import RPi.GPIO as GPIO
-except ImportError:
+    bcm = GPIO.BCM
+except:
     from bawt.mock.RPi import GPIO
     print(GPIO.ANNOUNCEMENT)
 
