@@ -1,4 +1,7 @@
 import unittest
+
+from bawt.mock.RPi import GPIO
+
 from bawt.switchboard.board import Board
 from bawt.switchboard.pin import Pin
 
