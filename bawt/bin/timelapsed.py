@@ -16,10 +16,14 @@ class Timelapsed(Camera):
 
         super(Timelapsed, self).__init__(config_dir=self.args.config_dir)
 
+        LOG.info("Starting Timelapsed")
         self.setup()
         self.frequency = self.args.frequency if hasattr(self.args, 'frequency') else self.timelapse.get('frequency', 60)
         self.prefix = self.args.prefix if hasattr(self.args, 'prefix') else self.timelapse.get('prefix', None)
         self.delete = self.args.delete if hasattr(self.args, 'delete') else self.timelapse.get('delete', False)
+        LOG.info("Frequency set to %s seconds" % self.frequency)
+        LOG.info("File prefix set to %s" % self.prefix)
+        LOG.info("Local file delete is set to %s" % self.delete)
 
     def parse_args(self, argv):
 
@@ -48,6 +52,7 @@ class Timelapsed(Camera):
         if self.timelapse.get('enabled', False):
             while True:
                 self.get_pic()
+                LOG.info("Sleeping for %s seconds..." % self.frequency)
                 time.sleep(float(self.frequency))
         else:
             LOG.info('Timelapse is disabled.  Please review your config file.')
