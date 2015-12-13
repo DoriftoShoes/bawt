@@ -6,6 +6,7 @@ import log as logging
 
 LOG = logging.get_logger(__name__)
 
+
 class Bawt(object):
 
     DEFAULT_DIRECTORY = 'tmp'
@@ -34,4 +35,3 @@ class Bawt(object):
                     LOG.critical("Could load subsystem config: %s.  Error: %s" % (subsystem, str(e)))
 
         self.aws = self.config.get('aws', None)
-

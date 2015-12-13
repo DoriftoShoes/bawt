@@ -4,6 +4,7 @@ from bawt.mock.RPi import GPIO
 
 from bawt.subsystems.camera import Camera
 
+
 class TestCamera(unittest.TestCase):
 
     CAM = Camera()

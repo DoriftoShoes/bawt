@@ -7,14 +7,14 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "bawt",
-    version = "0.0.1",
-    author = "DoriftoShoes",
-    author_email = "self@dorifto.shoes",
-    description = ("Garage/hydroponics controller project "),
-    license = "Apache",
-    keywords = "hydroponics",
-    url = "https://github.com/DoriftoShoes/bawt",
+    name="bawt",
+    version="0.0.1",
+    author="DoriftoShoes",
+    author_email="self@dorifto.shoes",
+    description="Garage/hydroponics controller project ",
+    license="Apache",
+    keywords="hydroponics",
+    url="https://github.com/DoriftoShoes/bawt",
     packages=['bawt', 'tests'],
     long_description=read('README.md'),
     classifiers=[

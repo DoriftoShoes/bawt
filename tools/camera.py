@@ -1,7 +1,4 @@
-from bawt.switchboard.pin import Pin
-from bawt.switchboard.board import Board
 from bawt.subsystems.camera import Camera
-from bawt.subsystems.file import File
 
 import sys
 
