@@ -48,7 +48,7 @@ class Timelapsed(Camera):
         if self.timelapse.get('enabled', False):
             while True:
                 self.get_pic()
-                time.sleep(self.frequency)
+                time.sleep(float(self.frequency))
         else:
             LOG.info('Timelapse is disabled.  Please review your config file.')
 
