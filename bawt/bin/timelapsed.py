@@ -14,7 +14,7 @@ class Timelapsed(Camera):
         self.args = None
         self.parse_args(argv)
 
-        super(self.__class__, self).__init__(config_dir=self.args.config_dir)
+        super(Timelapsed, self).__init__(config_dir=self.args.config_dir)
 
         self.setup()
         self.frequency = self.args.frequency if hasattr(self.args, 'frequency') else self.timelapse.get('frequency', 60)
