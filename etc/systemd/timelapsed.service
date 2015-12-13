@@ -1,5 +1,5 @@
 [Unit]
-Description=BAwt Timelapse Daemon
+Description=Bawt Timelapse Daemon
 
 [Service]
 WorkingDirectory=/home/pi/bawt/
