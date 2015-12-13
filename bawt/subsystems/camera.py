@@ -35,6 +35,8 @@ class Camera(Bawt):
         self.remote = self.camera.get('remote', None)
         self.picture_directory = self.camera.get('directory', Bawt.DEFAULT_DIRECTORY)
         self.resolution = self.camera.get('resolution', Bawt.DEFAULT_RESOLUTION)
+        LOG.info("Picture directory set to: %s" % self.picture_directory)
+        LOG.info("Resolution set to %s" % self.resolution)
         self.timelapse = self.camera.get('timelapse', None)
         self._is_initialized = False
 
