@@ -18,9 +18,9 @@ class Timelapsed(Camera):
 
         LOG.info("Starting Timelapsed")
         self.setup()
-        self.frequency = self.args.frequency if hasattr(self.args, 'frequency') else self.timelapse.get('frequency', 60)
-        self.prefix = self.args.prefix if hasattr(self.args, 'prefix') else self.timelapse.get('prefix', None)
-        self.delete = self.args.delete if hasattr(self.args, 'delete') else self.timelapse.get('delete', False)
+        self.frequency = self.args.frequency if self.args.frequency else self.timelapse.get('frequency', 60)
+        self.prefix = self.args.prefix if self.args.prefix else self.timelapse.get('prefix', None)
+        self.delete = self.args.delete if self.args.delete else self.timelapse.get('delete', False)
         LOG.info("Frequency set to %s seconds" % self.frequency)
         LOG.info("File prefix set to %s" % self.prefix)
         LOG.info("Local file delete is set to %s" % self.delete)
