@@ -6,7 +6,7 @@ from datetime import datetime
 import bawt.log as logging
 from bawt.subsystems.camera import Camera
 
-LOG = logging.get_logger(__name__)
+LOG = logging.get_logger('timelapsed')
 
 
 class Timelapsed(Camera):
