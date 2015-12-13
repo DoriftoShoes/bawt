@@ -30,6 +30,7 @@ class Timelapsed(Camera):
         self.prefix = self.args.prefix if self.args.prefix else self.timelapse.get('prefix', None)
         self.delete = self.args.delete if self.args.delete else self.timelapse.get('delete', False)
         self.hours = self.args.hours if self.args.hours else self.timelapse.get('hours', 'all')
+        self.hours = self.hours.split(',')
         LOG.info("Frequency set to %s seconds" % self.frequency)
         LOG.info("File prefix set to %s" % self.prefix)
         LOG.info("Local file delete is set to %s" % self.delete)
