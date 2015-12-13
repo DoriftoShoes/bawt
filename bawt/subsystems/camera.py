@@ -12,6 +12,8 @@ from bawt.bawt import Bawt
 import bawt.log as logging
 from bawt.subsystems.file import File
 
+LOG = logging.get_logger(__name__)
+
 
 class Camera(Bawt):
 
@@ -44,7 +46,6 @@ class Camera(Bawt):
             self.cam.start_preview()
             time.sleep(2)
             self._is_initialized = True
-            self.logger = logging.get_logger(__name__, self.logging_config)
 
     def _get_filepath(self, name=None, use_timestamp=True):
         """
@@ -73,7 +74,7 @@ class Camera(Bawt):
         """
         self._get_filepath(name, use_timestamp)
         self._initialize()
-        self.logger.info("Taking picture: %s" % self.fname)
+        LOG.info("Taking picture: %s" % self.fname)
         self.cam.capture(self.fname)
         self.close()
 
@@ -90,7 +91,7 @@ class Camera(Bawt):
         f = File()
         if not remote_target:
             remote_target = self.remote.get('target', None)
-        self.logger.info("Saving picture %s to %s" % (file_path, remote_target))
+        LOG.info("Saving picture %s to %s" % (file_path, remote_target))
         f.copy(file_path, remote_target, delete=delete_local)
 
     def close(self):

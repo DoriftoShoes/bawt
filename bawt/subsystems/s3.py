@@ -8,11 +8,13 @@ from filechunkio import FileChunkIO
 from bawt.bawt import Bawt
 from bawt import log as logging
 
+LOG = logging.get_logger(__name__)
+
+
 class S3(Bawt):
 
     def __init__(self):
         super(self.__class__, self).__init__()
-        self.logger = logging.get_logger(__name__, self.logging_config)
         self._aws_access_key = self.aws.get('access_key', None)
         self._aws_secret_key = self.aws.get('secret_key', None)
 
@@ -23,10 +25,10 @@ class S3(Bawt):
 
         try:
             conn = S3Connection(self._aws_access_key, self._aws_secret_key)
-            self.logger.info("Successfully connected to S3")
+            LOG.debug("Successfully connected to S3")
 
         except Exception as e:
-            self.logger.critical(str(e))
+            LOG.critical(str(e))
         return conn
 
     def _get_destination(self, destination):
@@ -37,7 +39,6 @@ class S3(Bawt):
         try:
             b = conn.create_bucket(bucket)
             self._bucket = bucket
-            self.logger.info("Created s3 bucket: %s" % bucket)
         except:
             b = conn.get_bucket(bucket)
         return b
@@ -53,7 +54,7 @@ class S3(Bawt):
         file_dir, file_name = os.path.split(file_path)
 
         k, b = self._create_key(file_name, bucket)
-        self.logger.info("Starting S3 file upload. %s to %s" % (file_path, bucket))
+        LOG.info("Starting S3 file upload. %s to %s" % (file_path, bucket))
         mp = b.initiate_multipart_upload(file_name)
         chunk_size = 52428800
         chunk_count = int(math.ceil(file_size / float(chunk_size)))
@@ -63,7 +64,7 @@ class S3(Bawt):
             with FileChunkIO(file_path, 'r', offset=offset, bytes=_bytes) as fp:
                 mp.upload_part_from_file(fp, part_num=i + 1)
         mp.complete_upload()
-        self.logger.info("Completed S3 file upload. %s to %s" % (file_path, bucket))
+        LOG.info("Completed S3 file upload. %s to %s" % (file_path, bucket))
 
     def save_string(self, bucket, name, content):
         """
@@ -72,7 +73,7 @@ class S3(Bawt):
         :param name: remote name for object
         :param content: Contents to save to remote object
         """
-        self.logger.info("Starting S3 string upload. %s to %s" % (name, bucket))
+        LOG.info("Starting S3 string upload. %s to %s" % (name, bucket))
         k, b = self._create_key(name, bucket)
         k.set_contents_from_string(content)
-        self.logger.info("Completed S3 string upload. %s to %s" % (name, bucket))
+        LOG.info("Completed S3 string upload. %s to %s" % (name, bucket))

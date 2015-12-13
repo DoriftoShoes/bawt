@@ -4,6 +4,7 @@ from bawt.bawt import Bawt
 from bawt import log as logging
 from bawt.subsystems.s3 import S3
 
+LOG = logging.get_logger(__name__)
 
 class File(Bawt):
 
@@ -11,7 +12,6 @@ class File(Bawt):
         super(self.__class__, self).__init__()
         self.remote = self.camera.get('remote', None)
         self.remote_type = self.remote.get('type', None)
-        self.logger = logging.get_logger(__name__, self.logging_config)
        
     def copy(self, file_path, destination, delete=False):
 
@@ -22,7 +22,7 @@ class File(Bawt):
         :param delete: Whether to delete local copy
         :return:
         """
-        self.logger.info("Remote type is set to %s" % self.remote_type)
+        LOG.debug("Remote type is set to %s" % self.remote_type)
         remote_save = None
         if self.remote_type == 'S3':
             remote_save = S3()
@@ -30,7 +30,7 @@ class File(Bawt):
         try:
             remote_save.save_file(destination, file_path)
         except Exception as e:
-            self.logger.critical("ERROR copying to remote - %s: %s" % (self.remote_type, str(e)))
+            LOG.critical("ERROR copying to remote - %s: %s" % (self.remote_type, str(e)))
             return False
 
         if delete:
@@ -43,6 +43,6 @@ class File(Bawt):
         """
         try:
             os.remove(file_path)
-            self.logger.info("Deleted local file: %s" % file_path)
+            LOG.info("Deleted local file: %s" % file_path)
         except:
-            self.logger.info("Failed to delete file: %s" % file_path)
+            LOG.critical("Failed to delete file: %s" % file_path)
