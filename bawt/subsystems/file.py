@@ -6,6 +6,7 @@ from bawt.subsystems.s3 import S3
 
 LOG = logging.get_logger(__name__)
 
+
 class File(Bawt):
 
     def __init__(self):
@@ -36,7 +37,8 @@ class File(Bawt):
         if delete:
             self.delete(file_path)
 
-    def delete(self, file_path):
+    @staticmethod
+    def delete(file_path):
         """
         Delete local file
         :param file_path: Local file path for deletion
@@ -44,5 +46,5 @@ class File(Bawt):
         try:
             os.remove(file_path)
             LOG.info("Deleted local file: %s" % file_path)
-        except:
+        except OSError:
             LOG.critical("Failed to delete file: %s" % file_path)

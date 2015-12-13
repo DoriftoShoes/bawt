@@ -1,9 +1,10 @@
 import logging
 from logging.config import fileConfig
-import sys
+
 
 def setup(config='/home/pi/bawt/conf/logging.conf'):
     fileConfig(config, disable_existing_loggers=False)
+
 
 def get_logger(name):
     """
