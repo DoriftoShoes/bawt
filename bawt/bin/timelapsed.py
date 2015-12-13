@@ -67,11 +67,11 @@ class Timelapsed(Camera):
         if self.hours == 'all':
             return True
 
-        current_hour = datetime.now().hour
+        current_hour = str(datetime.now().hour)
         if current_hour in self.hours:
             return True
 
-        LOG.debug("Current hour %i is not in the list of enabled hours" % datetime.now().hour)
+        LOG.debug("Current hour %s is not in the list of enabled hours" % datetime.now().hour)
         return False
 
     def run(self):
