@@ -70,6 +70,7 @@ class Timelapsed(Camera):
         if current_hour in self.hours:
             return True
 
+        LOG.info("Current hour %i is not in the list of enabled hours" % datetime.now().hour)
         return False
 
     def run(self):
@@ -80,7 +81,6 @@ class Timelapsed(Camera):
                     LOG.info("Sleeping for %s seconds..." % self.frequency)
                     time.sleep(float(self.frequency))
                 else:
-                    LOG.info("Current hour %i is not in the list of enabled hours")
                     time.sleep(300)
         else:
             LOG.info('Timelapse is disabled.  Please review your config file.')
