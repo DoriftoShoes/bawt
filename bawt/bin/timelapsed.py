@@ -64,7 +64,7 @@ class Timelapsed(Camera):
         self.remote_save(delete_local=self.delete)
 
     def check_time(self):
-        if all in self.hours:
+        if 'all' in self.hours:
             return True
 
         current_hour = str(datetime.now().hour)
