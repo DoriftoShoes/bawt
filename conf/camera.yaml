@@ -4,8 +4,8 @@ remote:
   target: phool-marki-pics
 directory: /home/pi/pics
 resolution:
-  x: 1024
-  y: 768
+  x: 2592
+  y: 1944
 timelapse:
   enabled: true
   frequency: 900
