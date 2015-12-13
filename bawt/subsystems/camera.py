@@ -18,7 +18,7 @@ LOG = logging.get_logger(__name__)
 class Camera(Bawt):
 
     def __init__(self, config_dir='conf/'):
-        super(self.__class__, self).__init__(config_dir)
+        super(Camera, self).__init__(config_dir)
         self.fname = None
         self.remote = None
         self.picture_directory = None
