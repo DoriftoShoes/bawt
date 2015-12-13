@@ -5,6 +5,9 @@ import time
 
 from bawt.bawt import Bawt
 
+LOG = logging.get_logger(__name__)
+
+
 class Bawtd(Bawt):
 
     def __init__(self, argv):
@@ -14,11 +17,10 @@ class Bawtd(Bawt):
         self.parser.add_argument('--subsystem', dest='subsystem', default=None, help='Subsystem to run')
         self.parser.add_argument('--config-file', dest='config_file', default='conf/main.yaml', help='path to the config file')
         self.args = self.parser.parse_args(args=argv)
-        self.logger = self.get_logger(__name__)
         
     def run(self):
         while True:
-            self.logger.info('running...')
+            LOG.info('running...')
             time.sleep(2)
             
 
