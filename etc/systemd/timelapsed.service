@@ -1,0 +1,13 @@
+[Unit]
+Description=BAwt Timelapse Daemon
+
+[Service]
+WorkingDirectory=/home/pi/bawt/
+ExecStart=/home/pi/bawt/.venv/bin/timelapsed --config-dir /home/pi/bawt/conf
+Restart=on-failure
+Type=simple
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
