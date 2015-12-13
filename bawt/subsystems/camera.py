@@ -2,7 +2,8 @@ import time
 
 try:
     import picamera
-    picamera.PiCamera()
+    testcam = picamera.PiCamera()
+    testcam.close()
 except:
     import bawt.mock.picamera as picamera
     print picamera.PiCamera.ANNOUNCEMENT
@@ -92,6 +93,6 @@ class Camera(Bawt):
         self.logger.info("Saving picture %s to %s" % (file_path, remote_target))
         f.copy(file_path, remote_target, delete=delete_local)
 
-    def close():
+    def close(self):
         self.cam.close()
         self._is_initialized = False
