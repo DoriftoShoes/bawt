@@ -6,3 +6,8 @@ directory: /home/pi/pics
 resolution:
   x: 1024
   y: 768
+timelapse:
+  enabled: true
+  frequency: 900
+  prefix: fool
+  delete: true

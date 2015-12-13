@@ -24,7 +24,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'bawtd = bawt.bin.daemon:main'
+            'timelapsed = bawt.bin.timelapsed:main'
         ]
     }
 )
