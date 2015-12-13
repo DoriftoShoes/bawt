@@ -16,6 +16,7 @@ class Timelapsed(Camera):
         self.frequency = None
         self.prefix = None
         self.delete = None
+        self._hours_string = None
         self.hours = 'all'
         self.parse_args(argv)
 
@@ -29,12 +30,12 @@ class Timelapsed(Camera):
         self.frequency = self.args.frequency if self.args.frequency else self.timelapse.get('frequency', 60)
         self.prefix = self.args.prefix if self.args.prefix else self.timelapse.get('prefix', None)
         self.delete = self.args.delete if self.args.delete else self.timelapse.get('delete', False)
-        self.hours = self.args.hours if self.args.hours else self.timelapse.get('hours', 'all')
-        self.hours = self.hours.split(',')
+        self._hours_string = self.args.hours if self.args.hours else self.timelapse.get('hours', 'all')
+        self.hours = self._hours_string.split(',')
         LOG.info("Frequency set to %s seconds" % self.frequency)
         LOG.info("File prefix set to %s" % self.prefix)
         LOG.info("Local file delete is set to %s" % self.delete)
-        LOG.info("Hours set to %s" % self.hours)
+        LOG.info("Hours set to %s" % self._hours_string)
 
     def parse_args(self, argv):
 
