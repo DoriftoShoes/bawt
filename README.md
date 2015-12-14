@@ -30,9 +30,9 @@ Cross subsystem configurations are done in the main configuration file.
 #### Subsystems
 The subsystems configuration is simply to enable or disable the different subsystems.  Available subsystems are:
 
-* camera
-* environment
-* irrigation
+* [camera](#camera)
+* [environment](#environment)
+* [irrigation](#irrigation)
 
 Each subsystem will have an `enabled` flag that is either `true` or `false`
 
