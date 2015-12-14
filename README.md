@@ -25,8 +25,6 @@ Cross subsystem configurations are done in the main configuration file.
 |access_key|AWS Access Key|YES|None|
 |secret_key|AWS Secret Key|YES|None|
 |**Logging**||
-|Option|Description|Required|Default|
-|:-----:|:--------:|:-----:|:------:|
 |config_file|Path to logging config|YES|None|
 
 #### Subsystems
