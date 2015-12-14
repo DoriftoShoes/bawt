@@ -17,6 +17,8 @@ LOG = logging.get_logger(__name__)
 
 class Camera(Bawt):
 
+    CONNECTION_RETRIES = 10
+
     def __init__(self, config_dir='conf/'):
         super(Camera, self).__init__(config_dir)
         self.fname = None
@@ -40,12 +42,20 @@ class Camera(Bawt):
         self.timelapse = self.camera.get('timelapse', None)
         self._is_initialized = False
 
+    def connect(self, retries):
+        for i in range(0, retries):
+            try:
+                self.cam = picamera.PiCamera()
+            except picamera.PiCamera.PiCameraMMALError as e:
+                LOG.debug("Attempt %i connecting to camera. Error: %s" % (retries, str(e)))
+                time.sleep(2)
+
     def _initialize(self):
         """
         Initialize the camera if it is not yet initialized.
         """
         if not self._is_initialized:
-            self.cam = picamera.PiCamera()
+            self.connect(retries=Camera.CONNECTION_RETRIES)
             self.cam.resolution = (self.resolution['x'], self.resolution['y'])
             self.cam.start_preview()
             time.sleep(2)
