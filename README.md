@@ -21,10 +21,10 @@ Cross subsystem configurations are done in the main configuration file.
 
 |Option|Description|Required|Default|
 |:-----:|:--------:|:-----:|:------:|
-|**AWS**||||
+|**AWS**||
 |access_key|AWS Access Key|YES|None|
 |secret_key|AWS Secret Key|YES|None|
-|**Logging**||||
+|**Logging**||
 |Option|Description|Required|Default|
 |:-----:|:--------:|:-----:|:------:|
 |config_file|Path to logging config|YES|None|
@@ -48,10 +48,10 @@ Control the rPi camera.
 |Option|Description|Required|Default|
 |:-----:|:--------:|:-----:|:------:|
 |directory|Local path to save files|YES|None|
-|**remote**||||
+|**remote**||
 |type|remote system type|YES|None|
 |target|location on remote system|YES|None|
-|**resolution**||||
+|**resolution**||
 |x|horizontal resolution|YES|None|
 |y|vertical resolution|YES|None|
 
