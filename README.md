@@ -1,6 +1,9 @@
-# bawt
-[![Circle CI](https://circleci.com/gh/DoriftoShoes/bawt/tree/master.svg?style=svg)](https://circleci.com/gh/DoriftoShoes/bawt/tree/master)
-## Introduction
+<p align="center">
+<img src="http://hoolboom.com/icons/robot.gif" />
+<br />
+<a href="https://circleci.com/gh/DoriftoShoes/bawt/tree/master"><img src="https://circleci.com/gh/DoriftoShoes/bawt/tree/master.svg?style=svg" /> </a>
+</p>
+## Bawt Introduction
 bawt is a project aimed at turning a Raspberry Pi into an all in one garage/hydroponic garden controller.
 
 ## Setup
