@@ -18,11 +18,12 @@ LOG = logging.get_logger(__name__)
 class Camera(Bawt):
 
     def __init__(self, config_dir='conf/'):
-        super(self.__class__, self).__init__(config_dir)
+        super(Camera, self).__init__(config_dir)
         self.fname = None
         self.remote = None
         self.picture_directory = None
         self.resolution = None
+        self.timelapse = None
         self.cam = None
         self._is_initialized = None
 
@@ -34,6 +35,9 @@ class Camera(Bawt):
         self.remote = self.camera.get('remote', None)
         self.picture_directory = self.camera.get('directory', Bawt.DEFAULT_DIRECTORY)
         self.resolution = self.camera.get('resolution', Bawt.DEFAULT_RESOLUTION)
+        LOG.info("Picture directory set to: %s" % self.picture_directory)
+        LOG.info("Resolution set to %s" % self.resolution)
+        self.timelapse = self.camera.get('timelapse', None)
         self._is_initialized = False
 
     def _initialize(self):
