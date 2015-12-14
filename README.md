@@ -20,7 +20,7 @@ WIP
 
 ## Subsystems
 ### Camera
-Control the rPi camera.  Timelapse daemon.
+Control the rPi camera.
 
 #### Configuration
 [camera.yaml](conf/camera.yaml)
@@ -39,6 +39,23 @@ Read environmental sensors
 ### Configuration
 [environment.yaml](conf/environment.yaml)
 WIP
+
+## Daemons
+### Timelapsed
+Timelapsed is used for taking timelapse pictures...surprise, surprise.  It offers a number of configuration options as listed below.
+
+#### Configuration
+[camera.yaml](conf/camera.yaml)
+
+Timelapsed is configured through the camera configuration file linked above.  All configuration options are under the `timelapse` section.
+
+|Option|Description|Required|Default|
+|:-----:|:--------:|:-----:|:------:|
+|enabled|Is timelapse enabled?|NO|true|
+|frequency|Picture interval(seconds)|NO|false|
+|prefix|Filename prefix|NO|None|
+|delete|Delete local file|NO|false|
+|hours|Hours of operation|NO|all|
 
 ## Tools
 ### cameratest.py
