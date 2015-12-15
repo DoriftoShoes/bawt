@@ -10,6 +10,8 @@ subsystems:
     enabled: true
   environment:
     enabled: false
+  hvac:
+    enabled: false
 
 logging:
     config_file: conf/logging.conf

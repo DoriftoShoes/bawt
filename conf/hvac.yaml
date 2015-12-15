@@ -1,0 +1,62 @@
+---
+  units:
+    1:
+      name: circulating_fan_1
+      pin: 20
+      enabled: true
+    2:
+      name: circulating_fan_2
+      pin: 19
+      enabled: true
+    3:
+      name: exhaust_fan_1
+      pin: 26
+      enabled: true
+    4:
+      name: exhaust_fan_2
+      pin: 21
+      enabled: true
+    5:
+      name: exhaust_fan_3
+      pin: 26
+      enabled: true
+    6:
+      name: exhaust_fan_4
+      pin: 21
+      enabled: true
+    7:
+      name: intake_fan_1
+      pin: 26
+      enabled: true
+    8:
+      name: intake_fan_2
+      pin: 21
+      enabled: true
+    9:
+      name: heater_1
+      pin: 29
+      enabled: true
+  zones:
+      1:
+        name: exhaust
+        enabled: true
+        units:
+          - 3
+          - 4
+      2:
+        name: circulation
+        enabled: true
+        units:
+          - 1
+          - 2
+      3:
+        name: intake
+        enabled: true
+        units:
+          - 7
+          - 8
+      4:
+        name: heat
+        enabled: true
+        units:
+          - 9
