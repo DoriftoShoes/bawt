@@ -1,12 +1,11 @@
 import math
-import os
 
+import os
+from bawt import log as logging
+from bawt.bawt import Bawt
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from filechunkio import FileChunkIO
-
-from bawt.bawt import Bawt
-from bawt import log as logging
 
 LOG = logging.get_logger(__name__)
 

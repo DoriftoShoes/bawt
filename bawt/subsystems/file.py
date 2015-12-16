@@ -1,8 +1,7 @@
 import os
-
-from bawt.bawt import Bawt
 from bawt import log as logging
-from bawt.subsystems.s3 import S3
+from bawt.bawt import Bawt
+from bawt.remotes.s3 import S3
 
 LOG = logging.get_logger(__name__)
 
