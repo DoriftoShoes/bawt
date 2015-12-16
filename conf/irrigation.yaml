@@ -1,5 +1,5 @@
 ---
-  zones:
+  units:
     1:
       name: front
       pin: 20

@@ -8,7 +8,7 @@ subsystems:
     enabled: false
   camera:
     enabled: true
-  environment:
+  sensor:
     enabled: false
   hvac:
     enabled: false
