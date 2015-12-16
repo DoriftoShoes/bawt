@@ -1,13 +1,16 @@
 ---
 temp1:
   name: temperature 1
+  type: DS180B20
   pin: 123
   enabled: true
 humidity1:
   name: humidity 1
+  type: DHT11
   pin: 456
   enabled: true
 light1:
   name: light 1
+  type: 5539
   pin: 789
   enabled: true
