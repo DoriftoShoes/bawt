@@ -1,5 +1,5 @@
-from bawt.bawt import Bawt
 from bawt import log as logging
+from bawt.bawt import Bawt
 
 LOG = logging.get_logger(__name__)
 
