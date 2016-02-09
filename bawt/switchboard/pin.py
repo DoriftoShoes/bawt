@@ -1,3 +1,4 @@
+import bawt.log as logging
 import os
 
 ci = os.environ.get('CI', False)
@@ -10,6 +11,8 @@ if not ci:
         print(GPIO.ANNOUNCEMENT)
 else:
     from bawt.mock.RPi import GPIO
+
+LOG = logging.get_logger(__name__)
 
 
 class Pin:
@@ -38,10 +41,14 @@ class Pin:
         """
         if self.mode != GPIO.OUT:
             raise Exception("Can only turn on output pins")
-        else:
+
+        try:
             GPIO.output(self.pin, True)
-            self.state = 'on'
-            return True
+        except Exception as e:
+            LOG.critical("Pin %i could not be enabled" % self.pin)
+
+        self.state = 'on'
+        return True
 
     def off(self):
         """
@@ -50,10 +57,14 @@ class Pin:
         """
         if self.mode != GPIO.OUT:
             raise Exception("Can only turn off output pins")
-        else:
+
+        try:
             GPIO.output(self.pin, False)
-            self.state = 'off'
-            return True
+        except Exception as e:
+            LOG.critical("Pin %i could not be disabled" % self.pin)
+
+        self.state = 'off'
+        return True
 
     def toggle(self):
         """
@@ -67,4 +78,4 @@ class Pin:
                 self.on()
             return True
         except Exception:
-            raise Exception("Unable to toggle pin")
+            raise Exception("Unable to toggle pin %i" % self.pin)
