@@ -22,6 +22,15 @@ class Irrigation(Bawt):
         pin_number = self._get_zone_definition(zone).get('pin', None)
         return Pin(pin_number)
 
+    def get_runs(self):
+        return self.irrigation.get('runs', None)
+
+    def _get_run_definition(self, run):
+        return self.get_runs()[run]
+
+    def _get_run_zones(self, run):
+        return self.get_runs()[run].get('zones', None)
+
     def start(self, zone):
         pin = self._get_zone_pin(zone)
         pin.on()
