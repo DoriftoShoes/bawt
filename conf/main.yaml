@@ -1,16 +1,23 @@
 ---
+system_user: bawtd
+system_group: bawtd
+
 aws:
-  access_key:
+  access_key: 
   secret_key:
 
+weather:
+  source: openweathermap
+  openweathermap:
+    location: 'Martinez, CA, US'
+    url: 'http://api.openweathermap.org/data/2.5/weather'
+    appid: 
 subsystems:
   irrigation:
-    enabled: false
+    enabled: true
   camera:
     enabled: true
-  sensor:
-    enabled: false
-  hvac:
+  environment:
     enabled: false
 
 logging:
