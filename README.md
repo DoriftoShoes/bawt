@@ -88,6 +88,21 @@ Timelapsed is configured through the camera configuration file linked above.  Al
 |delete|Delete local file|NO|false|
 |hours|Hours of operation|NO|all|
 
+### Irrigationd
+Irrigationd controls sprinklers and other irrigation systems according to the configuration as defined in irrigation.yaml
+
+#### Configuration
+[irrigation.yaml](conf/irrigation.yaml)
+
+Irrigationd is configured through the irrigation configuration file linked above.
+
+|Option|Description|Required|Default|
+|:-----:|:--------:|:-----:|:------:|
+|**units**||
+|name|user defined name|NO|None|
+|pin|GPIO pin|YES|None|
+|enabled|Is unit enabled?|NO|true|
+
 ## Tools
 ### cameratest.py
 Can be used for one off captures.
