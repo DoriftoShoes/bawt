@@ -53,11 +53,13 @@ class Irrigationd(Irrigation):
         self.args = parser.parse_args(args=argv)
 
     def run(self):
-        current_time = datetime.now()
-        for run in self.get_runs():
-            LOG.debug(run)
-        LOG.debug("Sleeping for %i seconds" % SLEEP)
-        time.sleep(SLEEP)
+        while True:
+            current_time = datetime.now()
+            print self.irrigation
+            for run_id, run_definition in self.get_runs().iteritems():
+                print run_id
+            LOG.debug("Sleeping for %i seconds" % SLEEP)
+            time.sleep(SLEEP)
 
     def execute_defined_run(self, run_id):
         run = self._get_run_definition(run_id)
