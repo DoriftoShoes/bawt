@@ -62,13 +62,48 @@ Control relays for irrigation systems
 
 #### Configuration
 [irrigation.yaml](conf/irrigation.yaml)
-WIP
 
-### Environment
+|Option|Description|Required|Default|
+|:-----:|:--------:|:-----:|:------:|
+|**units**||
+|name|user defined name|NO|None|
+|pin|GPIO pin|YES|None|
+|enabled|Is unit enabled?|NO|true|
+|**runs**||
+|start_time|Time of day for run|YES|None|
+|run_time|Length of run in seconds|YES|None|
+|zones|Zones included in run|YES|None|
+
+### Sensor
 Read environmental sensors
 
 ### Configuration
-[environment.yaml](conf/environment.yaml)
+[sensor.yaml](conf/environment.yaml)
+
+|Option|Description|Required|Default|
+|:-----:|:--------:|:-----:|:------:|
+|**units**||
+|name|user defined long name|NO|None|
+|pin|GPIO pin|YES|None|
+|enabled|Is sensor enabled?|NO|true|
+|type|Sensor model|YES|None|
+
+### Weather
+Collect local weather data
+
+#### Configuration
+WIP
+
+### HVAC
+Control HVAC system
+
+#### Configuration
+WIP
+
+### File
+Save various data to local or remote systems
+
+#### Configuration
 WIP
 
 ## Daemons
@@ -95,17 +130,6 @@ Irrigationd controls sprinklers and other irrigation systems according to the co
 [irrigation.yaml](conf/irrigation.yaml)
 
 Irrigationd is configured through the irrigation configuration file linked above.
-
-|Option|Description|Required|Default|
-|:-----:|:--------:|:-----:|:------:|
-|**units**||
-|name|user defined name|NO|None|
-|pin|GPIO pin|YES|None|
-|enabled|Is unit enabled?|NO|true|
-|**runs**||
-|start_time|Time of day for run|YES|None|
-|run_time|Length of run in seconds|YES|None|
-|zones|Zones included in run|YES|None|
 
 ## Tools
 ### cameratest.py
