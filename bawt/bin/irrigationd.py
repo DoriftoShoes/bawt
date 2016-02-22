@@ -53,7 +53,7 @@ class Irrigationd(Irrigation):
         self.args = parser.parse_args(args=argv)
 
     def run(self):
-        current_time = datetime.datetime.now()
+        current_time = datetime.now()
         for run in self.get_runs():
             LOG.debug(run)
         LOG.debug("Sleeping for %i seconds" % SLEEP)
