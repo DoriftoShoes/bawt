@@ -28,7 +28,295 @@
 
     <div class="container">
       <section id="main_content">
-        <p>Automate things.</p>
+        <p align="center">
+<img src="http://hoolboom.com/icons/robot.gif">
+<br>
+<a href="https://circleci.com/gh/DoriftoShoes/bawt/tree/master"><img src="https://circleci.com/gh/DoriftoShoes/bawt/tree/master.svg?style=svg"> </a>
+</p>
+
+<h2>
+<a id="bawt-introduction" class="anchor" href="#bawt-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bawt Introduction</h2>
+
+<p>Bawt is a project aimed at turning a Raspberry Pi into an all in one garage/hydroponic garden controller.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>To setup create a virtualenv, install the requirements, and run setup.py</p>
+
+<pre><code>virtualenv .venv
+source .venv/bin/activate
+pip install -U -r requirements.txt
+python setup.py develop
+</code></pre>
+
+<h3>
+<a id="general-configuration" class="anchor" href="#general-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General Configuration</h3>
+
+<p><a href="conf/main.yaml">main.yaml</a></p>
+
+<p>Cross subsystem configurations are done in the main configuration file.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>AWS</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">access_key</td>
+<td align="center">AWS Access Key</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">secret_key</td>
+<td align="center">AWS Secret Key</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center"><strong>Logging</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">config_file</td>
+<td align="center">Path to logging config</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="subsystems" class="anchor" href="#subsystems" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subsystems</h4>
+
+<p>The subsystems configuration is simply to enable or disable the different subsystems.  Available subsystems are:</p>
+
+<ul>
+<li><a href="#camera">camera</a></li>
+<li><a href="#environment">environment</a></li>
+<li><a href="#irrigation">irrigation</a></li>
+</ul>
+
+<p>Each subsystem will have an <code>enabled</code> flag that is either <code>true</code> or <code>false</code></p>
+
+<h2>
+<a id="subsystems-1" class="anchor" href="#subsystems-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Subsystems</h2>
+
+<h3>
+<a id="camera" class="anchor" href="#camera" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Camera</h3>
+
+<p>Control the rPi camera.</p>
+
+<h4>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/camera.yaml">camera.yaml</a></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">directory</td>
+<td align="center">Local path to save files</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center"><strong>remote</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">remote system type</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">target</td>
+<td align="center">location on remote system</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center"><strong>resolution</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">horizontal resolution</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">y</td>
+<td align="center">vertical resolution</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="irrigation" class="anchor" href="#irrigation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Irrigation</h3>
+
+<p>Control relays for irrigation systems</p>
+
+<h4>
+<a id="configuration-1" class="anchor" href="#configuration-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/irrigation.yaml">irrigation.yaml</a>
+WIP</p>
+
+<h3>
+<a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment</h3>
+
+<p>Read environmental sensors</p>
+
+<h3>
+<a id="configuration-2" class="anchor" href="#configuration-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p><a href="conf/environment.yaml">environment.yaml</a>
+WIP</p>
+
+<h2>
+<a id="daemons" class="anchor" href="#daemons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Daemons</h2>
+
+<h3>
+<a id="timelapsed" class="anchor" href="#timelapsed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Timelapsed</h3>
+
+<p>Timelapsed is used for taking timelapse pictures...surprise, surprise.  It offers a number of configuration options as listed below.</p>
+
+<h4>
+<a id="configuration-3" class="anchor" href="#configuration-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/camera.yaml">camera.yaml</a></p>
+
+<p>Timelapsed is configured through the camera configuration file linked above.  All configuration options are under the <code>timelapse</code> section.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">enabled</td>
+<td align="center">Is timelapse enabled?</td>
+<td align="center">NO</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">frequency</td>
+<td align="center">Picture interval(seconds)</td>
+<td align="center">NO</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">prefix</td>
+<td align="center">Filename prefix</td>
+<td align="center">NO</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">delete</td>
+<td align="center">Delete local file</td>
+<td align="center">NO</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">hours</td>
+<td align="center">Hours of operation</td>
+<td align="center">NO</td>
+<td align="center">all</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="irrigationd" class="anchor" href="#irrigationd" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Irrigationd</h3>
+
+<p>Irrigationd controls sprinklers and other irrigation systems according to the configuration as defined in irrigation.yaml</p>
+
+<h4>
+<a id="configuration-4" class="anchor" href="#configuration-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/irrigation.yaml">irrigation.yaml</a></p>
+
+<p>Irrigationd is configured through the irrigation configuration file linked above.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>units</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">user defined name</td>
+<td align="center">NO</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">pin</td>
+<td align="center">GPIO pin</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">enabled</td>
+<td align="center">Is unit enabled?</td>
+<td align="center">NO</td>
+<td align="center">true</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="tools" class="anchor" href="#tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tools</h2>
+
+<h3>
+<a id="cameratestpy" class="anchor" href="#cameratestpy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>cameratest.py</h3>
+
+<p>Can be used for one off captures.</p>
       </section>
     </div>
 
