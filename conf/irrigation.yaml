@@ -2,17 +2,28 @@
   units:
     1:
       name: front
-      pin: 20
+      pin: 24
       enabled: true
     2:
       name: foo
-      pin: 19
+      pin: 27
       enabled: true
     3:
       name: bar
-      pin: 26
+      pin: 22
       enabled: true
     4:
       name: baz
-      pin: 21
+      pin: 23
       enabled: true
+  runs:
+    1:
+      start_time: 04:00:00
+      run_time: 300
+      zones:
+        - 1
+    2:
+      start_time: 22:00:00
+      run_time: 300
+      zones:
+        - 1

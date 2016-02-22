@@ -3,3 +3,4 @@ rpi.gpio
 picamera
 boto
 filechunkio
+requests

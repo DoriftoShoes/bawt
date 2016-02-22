@@ -35,3 +35,5 @@ class Bawt(object):
                     LOG.critical("Could load subsystem config: %s.  Error: %s" % (subsystem, str(e)))
 
         self.aws = self.config.get('aws', None)
+        weather_source = self.config.get('weather', None).get('source', None)
+        self.weather = self.config.get('weather', None).get(weather_source, None)
