@@ -57,7 +57,7 @@ class Irrigationd(Irrigation):
             current_time = datetime.now().strftime('%H:%M')
             for run_id, run_definition in self.get_runs().iteritems():
                 start_time = run_definition.get('start_time', None)
-                if start_time != current_time:
+                if start_time == current_time:
                     self.execute_defined_run(run_id)
             LOG.info("Sleeping for %i seconds" % SLEEP)
             time.sleep(SLEEP)
