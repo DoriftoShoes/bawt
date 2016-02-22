@@ -1,11 +1,12 @@
 import time
 from threading import Thread
 
-from bawt.bawt import Bawt
 from bawt import log as logging
+from bawt.bawt import Bawt
 from bawt.switchboard.pin import Pin
 
 LOG = logging.get_logger(__name__)
+
 
 class Irrigation(Bawt):
 
@@ -26,10 +27,10 @@ class Irrigation(Bawt):
         return self.irrigation.get('runs', None)
 
     def _get_run_definition(self, run):
-        return self.get_runs()[run]
+        return self.get_runs().get(run, None)
 
     def _get_run_zones(self, run):
-        return self.get_runs()[run].get('zones', None)
+        return self._get_run_definition(run).get('zones', None)
 
     def start(self, zone):
         LOG.info("Starting zone %i" % zone)
