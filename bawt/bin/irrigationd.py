@@ -58,7 +58,7 @@ class Irrigationd(Irrigation):
             print self.irrigation
             for run_id, run_definition in self.get_runs().iteritems():
                 print run_id
-            LOG.debug("Sleeping for %i seconds" % SLEEP)
+            LOG.info("Sleeping for %i seconds" % SLEEP)
             time.sleep(SLEEP)
 
     def execute_defined_run(self, run_id):
