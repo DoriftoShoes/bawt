@@ -102,6 +102,10 @@ Irrigationd is configured through the irrigation configuration file linked above
 |name|user defined name|NO|None|
 |pin|GPIO pin|YES|None|
 |enabled|Is unit enabled?|NO|true|
+|**runs**||
+|start_time|Time of day for run|YES|None|
+|run_time|Length of run in seconds|YES|None|
+|zones|Zones included in run|YES|None|
 
 ## Tools
 ### cameratest.py
