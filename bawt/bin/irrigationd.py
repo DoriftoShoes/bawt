@@ -8,7 +8,7 @@ import bawt.log as logging
 from bawt.subsystems.irrigation import Irrigation
 
 LOG = logging.get_logger('irrigationd')
-SLEEP = 10
+SLEEP = 30
 
 
 class Irrigationd(Irrigation):
@@ -54,9 +54,11 @@ class Irrigationd(Irrigation):
 
     def run(self):
         while True:
-            current_time = datetime.now()
+            current_time = datetime.now().strftime('%H:%M')
             for run_id, run_definition in self.get_runs().iteritems():
-                print str(run_id) + " " + run_definition.get('start_time', None)
+                start_time = run_definition.get('start_time', None)
+                if start_time != current_time:
+                    self.execute_defined_run(run_id)
             LOG.info("Sleeping for %i seconds" % SLEEP)
             time.sleep(SLEEP)
 
@@ -66,8 +68,13 @@ class Irrigationd(Irrigation):
         run_zones = self._get_run_zones(run_id)
         jobs = []
         for zone in run_zones:
-            thread = threading.Thread(target=self.timed_run(zone, run_time))
-            jobs.append(thread)
+            zone_definition = self.get_zone(zone)
+            if zone_definition.get('enabled', False):
+                LOG.info("Queueing zone: %i for run" % zone)
+                thread = threading.Thread(target=self.timed_run(zone, run_time))
+                jobs.append(thread)
+            else:
+                LOG.info("Zone %i is in run %i but it is disabled.  Skipping." % (zone, run_id))
 
         for job in jobs:
             job.start()
