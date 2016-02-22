@@ -22,22 +22,13 @@ class Irrigationd(Irrigation):
         self.hours = 'all'
         self.parse_args(argv)
 
-        super(Irrigationd, self).__init__()
+        super(Irrigation, self).__init__()
 
-        LOG.info("Starting Timelapsed")
+        LOG.info("Starting Irrigationd")
         self.setup()
 
     def setup(self):
-        #super(Irrigation, self).setup()
-        self.frequency = self.args.frequency if self.args.frequency else self.irrigation.get('frequency', 60)
-        self.prefix = self.args.prefix if self.args.prefix else self.irrigation.get('prefix', None)
-        self.delete = self.args.delete if self.args.delete else self.irrigation.get('delete', False)
-        self._hours_string = self.args.hours if self.args.hours else self.irrigation.get('hours', 'all')
-        self.hours = self._hours_string.split(',')
-        LOG.info("Frequency set to %s seconds" % self.frequency)
-        LOG.info("File prefix set to %s" % self.prefix)
-        LOG.info("Local file delete is set to %s" % self.delete)
-        LOG.info("Hours set to %s" % self._hours_string)
+        pass
 
     def parse_args(self, argv):
 
@@ -62,10 +53,9 @@ class Irrigationd(Irrigation):
         self.args = parser.parse_args(args=argv)
 
     def run(self):
-        LOG.info('Started irrigationd')
         current_time = datetime.datetime.now()
         for run in self.get_runs():
-            print run
+            LOG.debug(run)
         LOG.debug("Sleeping for %i seconds" % SLEEP)
         time.sleep(SLEEP)
 
