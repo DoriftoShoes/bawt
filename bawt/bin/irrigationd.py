@@ -56,7 +56,7 @@ class Irrigationd(Irrigation):
         while True:
             current_time = datetime.now()
             for run_id, run_definition in self.get_runs().iteritems():
-                print run_id + " " + run_definition.get('start_time', None)
+                print str(run_id) + " " + run_definition.get('start_time', None)
             LOG.info("Sleeping for %i seconds" % SLEEP)
             time.sleep(SLEEP)
 
