@@ -189,89 +189,7 @@ python setup.py develop
 <h4>
 <a id="configuration-1" class="anchor" href="#configuration-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
 
-<p><a href="conf/irrigation.yaml">irrigation.yaml</a>
-WIP</p>
-
-<h3>
-<a id="environment" class="anchor" href="#environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Environment</h3>
-
-<p>Read environmental sensors</p>
-
-<h3>
-<a id="configuration-2" class="anchor" href="#configuration-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h3>
-
-<p><a href="conf/environment.yaml">environment.yaml</a>
-WIP</p>
-
-<h2>
-<a id="daemons" class="anchor" href="#daemons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Daemons</h2>
-
-<h3>
-<a id="timelapsed" class="anchor" href="#timelapsed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Timelapsed</h3>
-
-<p>Timelapsed is used for taking timelapse pictures...surprise, surprise.  It offers a number of configuration options as listed below.</p>
-
-<h4>
-<a id="configuration-3" class="anchor" href="#configuration-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
-
-<p><a href="conf/camera.yaml">camera.yaml</a></p>
-
-<p>Timelapsed is configured through the camera configuration file linked above.  All configuration options are under the <code>timelapse</code> section.</p>
-
-<table>
-<thead>
-<tr>
-<th align="center">Option</th>
-<th align="center">Description</th>
-<th align="center">Required</th>
-<th align="center">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">enabled</td>
-<td align="center">Is timelapse enabled?</td>
-<td align="center">NO</td>
-<td align="center">true</td>
-</tr>
-<tr>
-<td align="center">frequency</td>
-<td align="center">Picture interval(seconds)</td>
-<td align="center">NO</td>
-<td align="center">false</td>
-</tr>
-<tr>
-<td align="center">prefix</td>
-<td align="center">Filename prefix</td>
-<td align="center">NO</td>
-<td align="center">None</td>
-</tr>
-<tr>
-<td align="center">delete</td>
-<td align="center">Delete local file</td>
-<td align="center">NO</td>
-<td align="center">false</td>
-</tr>
-<tr>
-<td align="center">hours</td>
-<td align="center">Hours of operation</td>
-<td align="center">NO</td>
-<td align="center">all</td>
-</tr>
-</tbody>
-</table>
-
-<h3>
-<a id="irrigationd" class="anchor" href="#irrigationd" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Irrigationd</h3>
-
-<p>Irrigationd controls sprinklers and other irrigation systems according to the configuration as defined in irrigation.yaml</p>
-
-<h4>
-<a id="configuration-4" class="anchor" href="#configuration-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
-
 <p><a href="conf/irrigation.yaml">irrigation.yaml</a></p>
-
-<p>Irrigationd is configured through the irrigation configuration file linked above.</p>
 
 <table>
 <thead>
@@ -333,6 +251,159 @@ WIP</p>
 </tr>
 </tbody>
 </table>
+
+<h3>
+<a id="sensor" class="anchor" href="#sensor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sensor</h3>
+
+<p>Read environmental sensors</p>
+
+<h3>
+<a id="configuration-2" class="anchor" href="#configuration-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p><a href="conf/environment.yaml">sensor.yaml</a></p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>units</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">name</td>
+<td align="center">user defined long name</td>
+<td align="center">NO</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">pin</td>
+<td align="center">GPIO pin</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">enabled</td>
+<td align="center">Is sensor enabled?</td>
+<td align="center">NO</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">Sensor model</td>
+<td align="center">YES</td>
+<td align="center">None</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="weather" class="anchor" href="#weather" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Weather</h3>
+
+<p>Collect local weather data</p>
+
+<h4>
+<a id="configuration-3" class="anchor" href="#configuration-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p>WIP</p>
+
+<h3>
+<a id="hvac" class="anchor" href="#hvac" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HVAC</h3>
+
+<p>Control HVAC system</p>
+
+<h4>
+<a id="configuration-4" class="anchor" href="#configuration-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p>WIP</p>
+
+<h3>
+<a id="file" class="anchor" href="#file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>File</h3>
+
+<p>Save various data to local or remote systems</p>
+
+<h4>
+<a id="configuration-5" class="anchor" href="#configuration-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p>WIP</p>
+
+<h2>
+<a id="daemons" class="anchor" href="#daemons" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Daemons</h2>
+
+<h3>
+<a id="timelapsed" class="anchor" href="#timelapsed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Timelapsed</h3>
+
+<p>Timelapsed is used for taking timelapse pictures...surprise, surprise.  It offers a number of configuration options as listed below.</p>
+
+<h4>
+<a id="configuration-6" class="anchor" href="#configuration-6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/camera.yaml">camera.yaml</a></p>
+
+<p>Timelapsed is configured through the camera configuration file linked above.  All configuration options are under the <code>timelapse</code> section.</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Description</th>
+<th align="center">Required</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">enabled</td>
+<td align="center">Is timelapse enabled?</td>
+<td align="center">NO</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">frequency</td>
+<td align="center">Picture interval(seconds)</td>
+<td align="center">NO</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">prefix</td>
+<td align="center">Filename prefix</td>
+<td align="center">NO</td>
+<td align="center">None</td>
+</tr>
+<tr>
+<td align="center">delete</td>
+<td align="center">Delete local file</td>
+<td align="center">NO</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">hours</td>
+<td align="center">Hours of operation</td>
+<td align="center">NO</td>
+<td align="center">all</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="irrigationd" class="anchor" href="#irrigationd" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Irrigationd</h3>
+
+<p>Irrigationd controls sprinklers and other irrigation systems according to the configuration as defined in irrigation.yaml</p>
+
+<h4>
+<a id="configuration-7" class="anchor" href="#configuration-7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h4>
+
+<p><a href="conf/irrigation.yaml">irrigation.yaml</a></p>
+
+<p>Irrigationd is configured through the irrigation configuration file linked above.</p>
 
 <h2>
 <a id="tools" class="anchor" href="#tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tools</h2>
