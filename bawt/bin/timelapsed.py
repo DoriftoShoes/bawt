@@ -75,6 +75,7 @@ class Timelapsed(Camera):
         return False
 
     def run(self):
+        self.read_config(self.args.config_dir)
         if self.timelapse.get('enabled', False):
             while True:
                 if self.check_time():
