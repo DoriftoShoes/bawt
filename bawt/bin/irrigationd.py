@@ -13,12 +13,12 @@ LOG = logging.get_logger('irrigationd')
 class Irrigationd(Irrigation):
 
     def __init__(self, argv):
+        self.args = None
+        self.sleep = None
         self.args = self.parse_args(argv)
 
         super(Irrigation, self).__init__(config_dir=self.args.config_dir)
-        self.args = None
         self.irrigationd_config = self.irrigation.get('irrigationd')
-        self.sleep = None
 
         LOG.info("Starting Irrigationd")
         self.setup()
