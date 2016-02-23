@@ -13,7 +13,7 @@ LOG = logging.get_logger('irrigationd')
 class Irrigationd(Irrigation):
 
     def __init__(self, argv):
-        self.parse_args(argv)
+        self.args = self.parse_args(argv)
 
         super(Irrigation, self).__init__(config_dir=self.args.config_dir)
         self.args = None
@@ -34,10 +34,10 @@ class Irrigationd(Irrigation):
                             default='conf/main.yaml',
                             help='path to the config file')
         parser.add_argument('--sleep',
-                            dest='frequency',
+                            dest='sleep',
                             help='Frequency of capture')
 
-        self.args = parser.parse_args(args=argv)
+        return parser.parse_args(args=argv)
 
     def run(self):
         while True:
