@@ -16,21 +16,27 @@ class Irrigation(Bawt):
     def get_zone(self, zone):
         return self.irrigation['units'][zone]
 
-    def _get_zone_definition(self, zone):
+    def get_zone_definition(self, zone):
         return self.get_zone(zone)
 
     def _get_zone_pin(self, zone):
-        pin_number = self._get_zone_definition(zone).get('pin', None)
+        pin_number = self.get_zone_definition(zone).get('pin', None)
         return Pin(pin_number)
 
     def get_runs(self):
         return self.irrigation.get('runs', None)
 
-    def _get_run_definition(self, run):
+    def get_run_definition(self, run):
         return self.get_runs().get(run, None)
 
-    def _get_run_zones(self, run):
-        return self._get_run_definition(run).get('zones', None)
+    def get_run_zones(self, run):
+        return self.get_run_definition(run).get('zones', None)
+
+    def is_zone_enabled(self, zone):
+        return self.get_zone_definition(zone).get('enabled', False)
+
+    def is_run_enabled(self, run):
+        return self.get_run_definition(run).get('enabled', False)
 
     def start(self, zone):
         LOG.info("Starting zone %i" % zone)

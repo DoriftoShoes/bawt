@@ -50,22 +50,22 @@ class Irrigationd(Irrigation):
             time.sleep(self.sleep)
 
     def execute_defined_run(self, run_id):
-        run = self._get_run_definition(run_id)
-        if not run.get('enabled', False):
+        run = self.get_run_definition(run_id)
+        if not self.is_run_enabled(run_id):
             LOG.info("Run: %i is currently disabled.  Skipping." % run_id)
             return False
 
         run_time = run.get('run_time', None)
-        run_zones = self._get_run_zones(run_id)
+        run_zones = self.get_run_zones(run_id)
         jobs = []
         for zone in run_zones:
-            zone_definition = self.get_zone(zone)
-            if zone_definition.get('enabled', False):
-                LOG.info("Queueing zone: %i for run" % zone)
-                thread = threading.Thread(target=self.timed_run(zone, run_time))
-                jobs.append(thread)
-            else:
+            if not self.is_zone_enabled(zone):
                 LOG.info("Zone %i is in run %i but it is disabled.  Skipping." % (zone, run_id))
+                continue
+
+            LOG.info("Queueing zone: %i for run" % zone)
+            thread = threading.Thread(target=self.timed_run(zone, run_time))
+            jobs.append(thread)
 
         for job in jobs:
             job.start()
