@@ -51,6 +51,10 @@ class Irrigationd(Irrigation):
 
     def execute_defined_run(self, run_id):
         run = self._get_run_definition(run_id)
+        if not run.get('enabled', False):
+            LOG.info("Run: %i is currently disabled.  Skipping." % run_id)
+            return False
+
         run_time = run.get('run_time', None)
         run_zones = self._get_run_zones(run_id)
         jobs = []

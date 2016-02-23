@@ -20,11 +20,13 @@
     1:
       start_time: 04:00:00
       run_time: 300
+      enabled: true
       zones:
         - 1
     2:
       start_time: 22:00:00
       run_time: 300
+      enabled: true
       zones:
         - 1
   irrigationd:
