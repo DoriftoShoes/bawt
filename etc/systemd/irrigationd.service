@@ -1,0 +1,14 @@
+[Unit]
+Description=Bawt Irrigation Daemon
+
+[Service]
+WorkingDirectory=/home/pi/bawt/
+ExecStart=/home/pi/bawt/.venv/bin/irrigationd --config-dir /home/pi/bawt/conf
+StandardOutput=null
+Restart=on-failure
+Type=simple
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

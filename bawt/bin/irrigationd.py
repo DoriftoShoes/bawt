@@ -46,6 +46,9 @@ class Irrigationd(Irrigation):
                 start_time = run_definition.get('start_time', None)
                 if start_time == current_time:
                     self.execute_defined_run(run_id)
+                else:
+                    LOG.info("Current time %s does not match start time %s for run: %i" %
+                             (current_time, start_time, run_id))
             LOG.info("Sleeping for %i seconds" % self.sleep)
             time.sleep(self.sleep)
 
