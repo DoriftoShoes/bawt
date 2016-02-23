@@ -8,27 +8,23 @@ import bawt.log as logging
 from bawt.subsystems.irrigation import Irrigation
 
 LOG = logging.get_logger('irrigationd')
-SLEEP = 30
 
 
 class Irrigationd(Irrigation):
 
     def __init__(self, argv):
         self.args = None
-        self.frequency = None
-        self.prefix = None
-        self.delete = None
-        self._hours_string = None
-        self.hours = 'all'
+        self.irrigationd_config = self.irrigation.get('irrigationd')
+        self.sleep = None
         self.parse_args(argv)
 
-        super(Irrigation, self).__init__()
+        super(Irrigation, self).__init__(config_dir=self.args.config_dir)
 
         LOG.info("Starting Irrigationd")
         self.setup()
 
     def setup(self):
-        pass
+        self.sleep = self.args.sleep if self.args.sleep else self.irrigationd_config.get('sleep', 30)
 
     def parse_args(self, argv):
 
@@ -37,18 +33,9 @@ class Irrigationd(Irrigation):
                             dest='config_dir',
                             default='conf/main.yaml',
                             help='path to the config file')
-        parser.add_argument('--frequency',
+        parser.add_argument('--sleep',
                             dest='frequency',
                             help='Frequency of capture')
-        parser.add_argument('--prefix',
-                            dest='prefix',
-                            help='Filename prefix')
-        parser.add_argument('--delete',
-                            dest='delete',
-                            help='Delete local file')
-        parser.add_argument('--hours',
-                            dest='hours',
-                            help='Hours to run timelapse')
 
         self.args = parser.parse_args(args=argv)
 
@@ -59,8 +46,8 @@ class Irrigationd(Irrigation):
                 start_time = run_definition.get('start_time', None)
                 if start_time == current_time:
                     self.execute_defined_run(run_id)
-            LOG.info("Sleeping for %i seconds" % SLEEP)
-            time.sleep(SLEEP)
+            LOG.info("Sleeping for %i seconds" % self.sleep)
+            time.sleep(self.sleep)
 
     def execute_defined_run(self, run_id):
         run = self._get_run_definition(run_id)

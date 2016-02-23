@@ -10,8 +10,8 @@ LOG = logging.get_logger(__name__)
 
 class Irrigation(Bawt):
 
-    def __init__(self):
-        super(self.__class__, self).__init__()
+    def __init__(self, config_dir='conf/'):
+        super(self.__class__, self).__init__(config_dir)
 
     def get_zone(self, zone):
         return self.irrigation['units'][zone]
