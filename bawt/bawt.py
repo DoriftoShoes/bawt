@@ -1,8 +1,6 @@
-
-import yaml
-
-from switchboard.board import Board
 import log as logging
+import yaml
+from switchboard.board import Board
 
 LOG = logging.get_logger(__name__)
 
@@ -14,12 +12,19 @@ class Bawt(object):
                           'y': 768}
 
     def __init__(self, config_dir='conf/'):
+        self.config = None
+        self.subsystems = None
+        self.aws = None
+        self.weather = None
 
-        config_file = "%s/main.yaml" % config_dir
         self.board = Board()
-        self.config = yaml.safe_load(open(config_file))
+        self.read_config(config_dir)
         self.logging_config = self.config.get('logging', None).get('config_file', None)
         logging.setup(self.logging_config)
+
+    def read_config(self, config_dir):
+        config_file = "%s/main.yaml" % config_dir
+        self.config = yaml.safe_load(open(config_file))
         self.subsystems = self.config.get('subsystems', None)
         for subsystem, config in self.subsystems.iteritems():
             if config.get('enabled', False):

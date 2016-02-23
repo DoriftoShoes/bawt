@@ -41,6 +41,7 @@ class Irrigationd(Irrigation):
 
     def run(self):
         while True:
+            self.read_config(self.args.config_dir)
             current_time = datetime.now().strftime('%H:%M')
             for run_id, run_definition in self.get_runs().iteritems():
                 start_time = run_definition.get('start_time', None)
