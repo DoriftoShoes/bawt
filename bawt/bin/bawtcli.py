@@ -34,5 +34,21 @@ def camera(name, target):
     cam.get_picture(name=name, use_timestamp=True)
     cam.remote_save(delete_local=True, remote_target=target)
 
+@cli.command()
+def hvac():
+    pass
+
+@cli.command()
+def sensor():
+    pass
+
+@cli.command()
+def weather():
+    pass
+
+@cli.command()
+def file():
+    pass
+
 if __name__ == '__main__':
     cli()
