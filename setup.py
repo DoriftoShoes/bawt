@@ -25,7 +25,8 @@ setup(
     entry_points={
         'console_scripts': [
             'timelapsed = bawt.bin.timelapsed:main',
-            'irrigationd = bawt.bin.irrigationd:main'
+            'irrigationd = bawt.bin.irrigationd:main',
+            'bawt = bawt.bin.bawtcli:cli'
         ]
     }
 )
