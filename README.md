@@ -131,6 +131,51 @@ Irrigationd controls sprinklers and other irrigation systems according to the co
 
 Irrigationd is configured through the irrigation configuration file linked above.
 
-## Tools
-### cameratest.py
-Can be used for one off captures.
+## CLI
+The Bawt command line interface allows you to manually invoke the various subsystems.
+```
+root@mark-i:/home/pi/bawt# bawt --help
+Usage: bawt [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  camera
+  file
+  hvac
+  irrigation
+  sensor
+  weather
+```
+
+### Irrigation CLI
+The irrigation CLI is used to manually manipulate the irrigation subsystem.
+```
+root@mark-i:/home/pi/bawt# bawt irrigation --help
+Usage: bawt irrigation [OPTIONS] ZONE
+
+Options:
+  --state TEXT    turn it on yo
+  --runtime TEXT  Time of the run
+  --help          Show this message and exit.
+```
+
+### Camera CLI
+Manually take pictures.
+```
+root@mark-i:/home/pi/bawt# bawt irrigation --help
+Usage: bawt irrigation [OPTIONS] ZONE
+
+Options:
+  --state TEXT    turn it on yo
+  --runtime TEXT  Time of the run
+  --help          Show this message and exit.
+(.venv)root@mark-i:/home/pi/bawt# bawt camera --help
+Usage: bawt camera [OPTIONS]
+
+Options:
+  --name TEXT    Name prefix for file
+  --target TEXT  bucket name
+  --help         Show this message and exit.
+```
