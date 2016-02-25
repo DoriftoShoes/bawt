@@ -1,6 +1,7 @@
 import click
 
 from bawt.subsystems.camera import Camera
+from bawt.subsystems.device import Device
 from bawt.subsystems.irrigation import Irrigation
 
 @click.group()
@@ -49,6 +50,20 @@ def weather():
 @cli.command()
 def file():
     pass
+
+@cli.command()
+@click.argument('action')
+@click.argument('device')
+def device(action, device):
+    device = Device()
+    if action == 'on':
+        device.on(device)
+    elif action == 'off':
+        device.off(device)
+    elif action == 'toggle':
+        device.toggle(device)
+    elif action == 'moment':
+        device.moment(device)
 
 if __name__ == '__main__':
     cli()
