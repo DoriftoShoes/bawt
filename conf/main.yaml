@@ -19,6 +19,8 @@ subsystems:
     enabled: true
   environment:
     enabled: false
+  device:
+    enabled: true
 
 logging:
     config_file: conf/logging.conf

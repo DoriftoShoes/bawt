@@ -1,0 +1,6 @@
+---
+garage_door:
+  name: garage door
+  type: generic
+  pin: 123
+  enabled: true
