@@ -1,5 +1,6 @@
 from bawt import log as logging
 from bawt.bawt import Bawt
+from bawt.switchboard.pin import Pin
 
 LOG = logging.get_logger(__name__)
 
@@ -9,20 +10,30 @@ class Devices(Bawt):
     def __init__(self, config_dir='conf/'):
         super(self.__class__, self).__init__(config_dir)
 
-    def get_by_name(self):
-        pass
+    def get_by_name(self, name):
+        device = self.device.get(name, None)
+        if not device:
+            return False
+        return device
 
-    def get_by_id(self):
-        pass
+    def _get_pin(self, name):
+        pin_number = self.get_by_name(name).get('pin', None)
+        return Pin(pin_number)
 
-    def on(self):
-        pass
+    def on(self, name):
+        LOG.info("Enabling device %i" % name)
+        pin = self._get_pin(name)
+        pin.on()
 
-    def off(self):
-        pass
+    def off(self, name):
+        LOG.info("Disabling device %i" % name)
+        pin = self._get_pin(name)
+        pin.off()
 
-    def toggle(self):
-        pass
+    def toggle(self, name):
+        LOG.info("Toggling device %i" % name)
+        pin = self._get_pin(name)
+        pin.toggle()
 
-    def timed_run(self):
+    def timed_run(self, name, run_time):
         pass
