@@ -1,3 +1,5 @@
+import time
+
 from bawt import log as logging
 from bawt.bawt import Bawt
 from bawt.switchboard.pin import Pin
@@ -5,7 +7,7 @@ from bawt.switchboard.pin import Pin
 LOG = logging.get_logger(__name__)
 
 
-class Devices(Bawt):
+class Device(Bawt):
 
     def __init__(self, config_dir='conf/'):
         super(self.__class__, self).__init__(config_dir)
@@ -37,3 +39,11 @@ class Devices(Bawt):
 
     def timed_run(self, name, run_time):
         pass
+
+    def moment(self, name):
+        moment_length = 2
+        LOG.info("Momentary run: %s for %i seconds" % (name, moment_length))
+        pin = self._get_pin(name)
+        pin.on()
+        time.sleep(moment_length)
+        pin.off()
